@@ -92,8 +92,9 @@
   /* ---------- header ---------- */
   header{position:sticky;top:0;z-index:50;background:rgba(250,249,245,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
   .bar{display:flex;align-items:center;justify-content:space-between;height:64px;gap:24px}
-  .brand{font-family:'Fraunces',serif;font-weight:600;font-size:23px;color:var(--slate);letter-spacing:.01em}
+  .brand{display:inline-flex;align-items:center}
   .brand:hover{text-decoration:none}
+  .brand img{height:28px;width:auto;display:block}
 
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;border-radius:var(--radius-sm);
     font-family:'Inter';font-weight:600;font-size:15px;cursor:pointer;transition:background .18s ease,transform .18s ease;
@@ -141,6 +142,36 @@
   .success p{color:var(--muted);font-size:15px}
   .success .check{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:999px;background:var(--sage);color:#fff;margin-bottom:12px}
 
+  .hero-subline{font-family:'Inter',system-ui,sans-serif;font-weight:600;font-size:15.5px;line-height:1.5;color:var(--ink-2);text-align:left;margin:20px 0 0}
+  .hero-subline .hl{color:#BC5536}
+
+  #signup-bottom{scroll-margin-top:88px}
+
+  /* ---------- Kit embed overrides ---------- */
+  .formkit-form[data-uid="0675894d81"]{max-width:580px;margin:0 auto}
+  .formkit-form[data-uid="0675894d81"] .formkit-fields{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start}
+  .formkit-form[data-uid="0675894d81"] .formkit-field{margin:0}
+  .formkit-form[data-uid="0675894d81"] .formkit-field:nth-of-type(1){flex:1.7 1 240px}
+  .formkit-form[data-uid="0675894d81"] .formkit-field:nth-of-type(2){flex:1 1 150px}
+  .formkit-form[data-uid="0675894d81"] .formkit-submit{flex:1 0 100%;margin-top:2px}
+  @media(max-width:520px){
+    .formkit-form[data-uid="0675894d81"] .formkit-field:nth-of-type(1),
+    .formkit-form[data-uid="0675894d81"] .formkit-field:nth-of-type(2){flex:1 1 100%}
+  }
+  .formkit-form[data-uid="0675894d81"] .formkit-input{
+    width:100%;font-family:'Inter',system-ui,sans-serif !important;font-size:16px;
+    color:#FAF9F5 !important;background:#242220 !important;border:1px solid #3A3835 !important;
+    border-radius:8px !important;padding:13px 14px;min-height:50px;transition:border-color .15s ease,box-shadow .15s ease}
+  .formkit-form[data-uid="0675894d81"] .formkit-input::placeholder{color:#8C8779 !important}
+  .formkit-form[data-uid="0675894d81"] .formkit-input:focus{
+    outline:none;border-color:#DE7356 !important;box-shadow:0 0 0 3px rgba(222,115,86,0.25) !important}
+  .formkit-form[data-uid="0675894d81"] .formkit-submit{
+    width:100%;background:#DE7356 !important;color:#FFFDF9 !important;font-family:'Inter',system-ui,sans-serif !important;
+    font-weight:600;font-size:16px;border:none;border-radius:8px !important;cursor:pointer;
+    padding:14px 20px;min-height:52px;transition:background .18s ease}
+  .formkit-form[data-uid="0675894d81"] .formkit-submit:hover{background:#BC5536 !important}
+  .formkit-form[data-uid="0675894d81"] .formkit-powered-by-convertkit{opacity:.55}
+
   /* ---------- generic section ---------- */
   section{padding:56px 0;scroll-margin-top:72px}
   .sec-eyebrow{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--terracotta-deep);margin-bottom:14px}
@@ -168,6 +199,7 @@
   .statline .lab{font-size:14px;color:var(--ink-2);font-weight:500}
   .statline .num{font-family:'Fraunces',serif;font-weight:600;font-size:19px}
   .statline .num small{font-family:'Inter';font-weight:500;font-size:13px;color:var(--faint)}
+  .substats{display:flex;justify-content:space-between;margin-top:8px;font-size:12.5px;color:var(--faint)}
   .track{height:8px;border-radius:999px;background:var(--surface-2);position:relative;overflow:hidden}
   .track>i{position:absolute;left:0;top:0;bottom:0;border-radius:999px}
   .fill-terra{background:var(--terracotta)}
@@ -195,10 +227,15 @@
 
   /* letter */
   .letter{background:var(--surface-2)}
-  .letter .sig-row{display:flex;align-items:center;gap:14px;margin-bottom:30px}
-  .letter .avatar{width:54px;height:54px;border-radius:999px;background:var(--terracotta);color:#FFFDF9;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:600;font-size:22px;flex-shrink:0}
-  .letter .who{font-weight:600;font-size:16px;color:var(--slate)}
-  .letter .who small{display:block;font-weight:400;font-size:13.5px;color:var(--muted);margin-top:2px}
+  .letter-inner{max-width:900px;display:grid;grid-template-columns:220px 1fr;gap:36px;align-items:start}
+  .letter-side{display:flex;flex-direction:column;align-items:center;text-align:center}
+  .letter-photo{width:200px;height:200px;border-radius:50%;object-fit:cover;display:block}
+  .letter-name{font-family:'Fraunces',serif;font-weight:700;font-size:18px;color:var(--slate);margin-top:16px}
+  .letter-creds{font-size:13.5px;color:var(--muted);margin-top:4px;line-height:1.5}
+  @media(max-width:760px){
+    .letter-inner{grid-template-columns:1fr}
+    .letter-photo{width:160px;height:160px}
+  }
   .letter h2{font-size:clamp(26px,4vw,38px);margin-bottom:26px;max-width:20ch}
   .letter .body p{font-size:17px;color:var(--ink-2);margin-bottom:18px;line-height:1.72}
   .letter .body em{font-style:italic;color:var(--terracotta-deep);font-weight:500}
@@ -239,7 +276,8 @@
   /* footer */
   footer{padding:48px 0;border-top:1px solid var(--border)}
   .foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
-  .foot .brand{font-size:20px}
+  .foot .brand{display:inline-flex;align-items:center}
+  .foot .brand img{height:24px;width:auto;display:block}
   .foot .meta{font-size:14px;color:var(--muted)}
   .foot .meta a{color:var(--terracotta-deep)}
   .foot .tag{font-size:14px;color:var(--faint)}
@@ -254,13 +292,13 @@
 
 <header>
   <div class="wrap bar">
-    <a href="#top" class="brand">Cohort</a>
+    <a href="#top" class="brand"><img src="images/cohort-wordmark-v2.png" alt="Cohort"></a>
     <nav class="navlinks">
-      <a href="#what-is-cohort">What is Cohort?</a>
+      <a href="#what-is-cohort">What Cohort Does</a>
       <a href="#letter">A Letter From Stone</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <a href="#join" class="btn btn-primary header-cta">Join the waitlist</a>
+    <a href="#signup-bottom" class="btn btn-primary header-cta">Join the waitlist</a>
   </div>
 </header>
 
@@ -269,39 +307,33 @@
 <!-- ===================== HERO ===================== -->
 <section class="hero" id="join">
   <div class="wrap">
-    <h1>Get licensed without questioning if you are doing it right. Let us worry about that.</h1>
+    <h1>Get licensed without questioning if you are doing it right.</h1>
     <p class="lede">Cohort is the new therapist home built for prelicensed therapists and supervisors. It lets you know your next step to licensure, gives you an hour tracker tailored to your license track, and allows you to connect with your cohort along the way. Oh, and by the way, always FREE for prelicensed therapists.</p>
 
     <div class="signup" id="form-hero">
-      <form class="signup-form" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" method="POST" novalidate>
-        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
-        <input type="hidden" name="source" value="joincohort.us hero">
-        <div class="field-row">
-          <div class="f-email">
-            <label for="email-hero">Email</label>
-            <input id="email-hero" type="email" name="email" placeholder="you@email.com" required autocomplete="email">
+      <form action="https://app.kit.com/forms/9633718/subscriptions" class="seva-form formkit-form" method="post" data-sv-form="9633718" data-uid="0675894d81" data-format="inline" data-version="5">
+        <div data-style="clean">
+          <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
+          <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
+            <div class="formkit-field">
+              <input class="formkit-input" name="email_address" aria-label="Email Address" placeholder="Email Address" required type="email">
+            </div>
+            <div class="formkit-field">
+              <input class="formkit-input" aria-label="State You Live In" name="fields[state_you_live_in]" placeholder="State You Live In" type="text">
+            </div>
+            <button data-element="submit" class="formkit-submit formkit-submit">
+              <div class="formkit-spinner"><div></div><div></div><div></div></div>
+              <span>JOIN THE WAITLIST</span>
+            </button>
           </div>
-          <div class="f-track">
-            <label for="track-hero">Your license track</label>
-            <select id="track-hero" name="license_track" required>
-              <option value="" selected disabled>Where are you headed?</option>
-              <option value="LAMFT">LAMFT / MFT associate</option>
-              <option value="LAPC">LAPC / APC (counseling)</option>
-              <option value="LMSW">LMSW (social work)</option>
-              <option value="Other">Other / not sure yet</option>
-            </select>
+          <div class="formkit-powered-by-convertkit-container">
+            <a href="https://kit.com/features/forms?utm_campaign=poweredby&utm_content=form&utm_medium=referral&utm_source=dynamic" data-element="powered-by" class="formkit-powered-by-convertkit" data-variant="dark" target="_blank" rel="nofollow noopener">Built with Kit</a>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary">Join the waitlist</button>
-        <p class="form-error" role="alert">Add your email and pick a track, then try again.</p>
-        <p class="microcopy"><svg class="ico" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m4 7 8 6 8-6"/></svg> No spam. A heads up the day Cohort opens, and a few notes from me along the way.</p>
       </form>
-      <div class="success" role="status" aria-live="polite">
-        <span class="check"><svg class="ico ico-sm" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
-        <h3>You're on the list.</h3>
-        <p>Check your inbox for a quick confirmation. You'll be first through the door when Cohort opens.</p>
-      </div>
     </div>
+
+    <p class="hero-subline"><span class="hl">Already tracking hours?</span> Import what you've got in a click and ditch the platform you're paying for or the makeshift spreadsheet.</p>
 
   </div>
 </section>
@@ -332,6 +364,7 @@
         <div class="statline">
           <div class="top"><span class="lab">Supervision</span><span class="num">47 <small>/ 100</small></span></div>
           <div class="track"><i class="fill-sage" style="width:47%"></i></div>
+          <div class="substats"><span>Individual 28 / 50</span><span>Group 19</span></div>
         </div>
       </div>
     </div>
@@ -346,12 +379,11 @@
       <div class="pcard">
         <div class="ph"><svg class="ico" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg> Your licensure path</div>
         <div class="steps">
-          <div class="step done"><div class="rail"></div><div class="dot"><svg class="ico ico-sm" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div><div class="lab">Find an approved supervisor</div></div>
-          <div class="step done"><div class="rail"></div><div class="dot"><svg class="ico ico-sm" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div><div class="lab">Sign your supervision contract</div></div>
+          <div class="step done"><div class="rail"></div><div class="dot"><svg class="ico ico-sm" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div><div class="lab">Find Your Directed Experience</div></div>
+          <div class="step done"><div class="rail"></div><div class="dot"><svg class="ico ico-sm" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div><div class="lab">Discuss Plan of Supervision with Supervisor</div></div>
           <div class="step now"><div class="rail"></div><div class="dot"><svg class="ico ico-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/></svg></div><div class="lab">Log your direct and supervision hours<span class="tag">You're here</span></div></div>
-          <div class="step"><div class="rail"></div><div class="dot"></div><div class="lab">Reach 2,000 direct + 100 supervision</div></div>
-          <div class="step"><div class="rail"></div><div class="dot"></div><div class="lab">Submit your application to the board</div></div>
-          <div class="step"><div class="dot"></div><div class="lab">Get licensed</div></div>
+          <div class="step"><div class="rail"></div><div class="dot"></div><div class="lab">Plan of Directed Experience with Director</div></div>
+          <div class="step"><div class="dot"></div><div class="lab">Get signature from Supervisor and Experience Director for CONTRACT AFFIDAVIT (Notarized)</div></div>
         </div>
       </div>
     </div>
@@ -394,34 +426,37 @@
 
 <!-- ===================== LETTER ===================== -->
 <section class="letter" id="letter">
-  <div class="wrap reading reveal">
-    <div class="sig-row">
-      <div class="avatar">S</div>
-      <div class="who">A letter from Stone<small>Stone Ramsey, LAMFT · Doctoral Candidate, MFT · Creator of Cohort</small></div>
+  <div class="wrap letter-inner reveal">
+    <div class="letter-side">
+      <img class="letter-photo" src="images/cropped-headshot.jpg" alt="Stone Ramsey">
+      <div class="letter-name">Stone Ramsey</div>
+      <div class="letter-creds">LAMFT · Doctoral Candidate, MFT · Creator of Cohort</div>
     </div>
+    <div class="letter-main">
+      <p class="sec-eyebrow">A letter from Stone</p>
+      <h2>I built something I couldn't believe wasn't there to begin with.</h2>
 
-    <h2>I built something I couldn't believe wasn't there to begin with.</h2>
+      <div class="body">
+        <p>I was a fresh graduate from a Marriage and Family Therapy program in Tennessee when I moved back down to Georgia. Wide-eyed, ready to start my career and make a difference in this world. <em>And finally get paid for it.</em> But there was one thing: I had zero connections in the therapy world.</p>
 
-    <div class="body">
-      <p>I was a fresh graduate from a Marriage and Family Therapy program in Tennessee when I moved back down to Georgia. Wide-eyed, ready to start my career and make a difference in this world. <em>And finally get paid for it.</em> But there was one thing: I had zero connections in the therapy world.</p>
+        <p>I went from a cohort of twelve who were with me every step to graduation, learning how to be therapists together, supporting each other, conceptualizing cases together. Then on graduation day, it all stopped. We all had to go our separate ways.</p>
 
-      <p>I went from a cohort of twelve who were with me every step to graduation, learning how to be therapists together, supporting each other, conceptualizing cases together. Then on graduation day, it all stopped. We all had to go our separate ways.</p>
+        <p>Me? I had to move out of state into new laws, new regulations, new systems, with no one there to guide me through the most ambiguous and confusing part of our profession: prelicensure. I was alone, confused, and stressed, all while trying to build a caseload.</p>
 
-      <p>Me? I had to move out of state into new laws, new regulations, new systems, with no one there to guide me through the most ambiguous and confusing part of our profession: prelicensure. I was alone, confused, and stressed, all while trying to build a caseload.</p>
+        <p class="pull">I didn't know what step came before what. I struggled to find a supervisor. I was praying my forms were going to the board the right way. The waiting, the uncertainty, the fear of having to start over.</p>
 
-      <p class="pull">I didn't know what step came before what. I struggled to find a supervisor. I was praying my forms were going to the board the right way. The waiting, the uncertainty, the fear of having to start over.</p>
+        <p>I don't even want to get into the financial side of it. It was a grueling season.</p>
 
-      <p>I don't even want to get into the financial side of it. It was a grueling season.</p>
+        <p>Somewhere in there, I learned that a therapist's main mode of community is Facebook groups. And there was no group for prelicensed therapists in Georgia. So I made one. The response, just from making it, was immediate and warm.</p>
 
-      <p>Somewhere in there, I learned that a therapist's main mode of community is Facebook groups. And there was no group for prelicensed therapists in Georgia. So I made one. The response, just from making it, was immediate and warm.</p>
+        <p>Then it hit me. Everyone in this stage was feeling exactly what I was feeling. The same struggle to find a good practice, the right supervisor, to get board submissions correct, to track hours, to not feel so alone.</p>
 
-      <p>Then it hit me. Everyone in this stage was feeling exactly what I was feeling. The same struggle to find a good practice, the right supervisor, to get board submissions correct, to track hours, to not feel so alone.</p>
+        <p>Therapists serve people better when they're supported, connected, encouraged, and equipped with the right tools. There is a clear need for a therapist home. An official community where everyone gets it and everyone's verified. A place where you can conceptualize cases, refer to each other, and lift one another up. A platform built by therapists, made for therapists.</p>
 
-      <p>Therapists serve people better when they're supported, connected, encouraged, and equipped with the right tools. There is a clear need for a therapist home. An official community where everyone gets it and everyone's verified. A place where you can conceptualize cases, refer to each other, and lift one another up. A platform built by therapists, made for therapists.</p>
+        <p>Let's stop trying to figure this out by ourselves and start linking arms. Join me in turning what can be the loneliest profession into the tightest-knit community there is.</p>
 
-      <p>Let's stop trying to figure this out by ourselves and start linking arms. Join me in turning what can be the loneliest profession into the tightest-knit community there is.</p>
-
-      <p class="signoff">Stone<small>Founder, Cohort</small></p>
+        <p class="signoff">Stone<small>Founder, Cohort</small></p>
+      </div>
     </div>
   </div>
 </section>
@@ -443,8 +478,9 @@
     <p class="sec-eyebrow" style="text-align:center">Before you ask</p>
     <h2 class="sec-title" style="text-align:center;max-width:none;margin:0 auto 36px">Fair questions.</h2>
 
-    <div class="qa"><h3>Is it really free?</h3><p>Yes. Free for prelicensed clinicians, permanently. Tracking your hours and getting licensed will never cost you anything on Cohort.</p></div>
-    <div class="qa"><h3>Who is it for right now?</h3><p>Georgia first. MFT associates (LAMFT) at launch, with counseling (LAPC) and social work (LMSW) close behind. If you're prelicensed in Georgia, you're exactly who we're building for.</p></div>
+    <div class="qa"><h3>Is it really free?</h3><p>Yes. Free for prelicensed clinicians, permanently. It's also free for supervisors right now to review and approve their supervisees' hours. Tracking your hours and getting licensed will never cost you anything on Cohort.</p></div>
+    <div class="qa"><h3>Who is it for right now?</h3><p>Prelicensed MFTs, APCs, and LMSWs in Georgia, plus the supervisors who approve their hours. If you're prelicensed in Georgia or you supervise someone who is, you're exactly who we're building for.</p></div>
+    <div class="qa"><h3>What if I am not in Georgia?</h3><p>That is ok! You can still utilize the hours, supervisor approval, and community features. We are working to extend the licensure steps to your state as soon as possible! Share Cohort with others in your state to speed up the process!</p></div>
     <div class="qa"><h3>When does it open?</h3><p>We're heads down building it now. Get on the waitlist and you'll be among the first in the day it opens.</p></div>
     <div class="qa"><h3>Do I have to start my hours over?</h3><p>No. Bring what you've already logged in by CSV or PDF and pick up right where you are.</p></div>
     <div class="qa"><h3>Who's behind it?</h3><p>Stone Ramsey, a Georgia LAMFT and doctoral candidate in MFT. I'm building Cohort because I needed it and couldn't find it.</p></div>
@@ -457,35 +493,27 @@
     <div class="box reveal">
       <h2>Be part of the first cohort.</h2>
       <p>Get on the list. You'll be first through the door when Cohort opens, and you'll help shape what it becomes.</p>
-      <div class="signup" id="form-final">
-        <form class="signup-form" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" method="POST" novalidate>
-          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
-          <input type="hidden" name="source" value="joincohort.us footer">
-          <div class="field-row">
-            <div class="f-email">
-              <label for="email-final">Email</label>
-              <input id="email-final" type="email" name="email" placeholder="you@email.com" required autocomplete="email">
+      <div class="signup" id="signup-bottom">
+        <form action="https://app.kit.com/forms/9633718/subscriptions" class="seva-form formkit-form" method="post" data-sv-form="9633718" data-uid="0675894d81" data-format="inline" data-version="5">
+          <div data-style="clean">
+            <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
+            <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
+              <div class="formkit-field">
+                <input class="formkit-input" name="email_address" aria-label="Email Address" placeholder="Email Address" required type="email">
+              </div>
+              <div class="formkit-field">
+                <input class="formkit-input" aria-label="State You Live In" name="fields[state_you_live_in]" placeholder="State You Live In" type="text">
+              </div>
+              <button data-element="submit" class="formkit-submit formkit-submit">
+                <div class="formkit-spinner"><div></div><div></div><div></div></div>
+                <span>JOIN THE MOVEMENT</span>
+              </button>
             </div>
-            <div class="f-track">
-              <label for="track-final">Your license track</label>
-              <select id="track-final" name="license_track" required>
-                <option value="" selected disabled>Where are you headed?</option>
-                <option value="LAMFT">LAMFT / MFT associate</option>
-                <option value="LAPC">LAPC / APC (counseling)</option>
-                <option value="LMSW">LMSW (social work)</option>
-                <option value="Other">Other / not sure yet</option>
-              </select>
+            <div class="formkit-powered-by-convertkit-container">
+              <a href="https://kit.com/features/forms?utm_campaign=poweredby&utm_content=form&utm_medium=referral&utm_source=dynamic" data-element="powered-by" class="formkit-powered-by-convertkit" data-variant="dark" target="_blank" rel="nofollow noopener">Built with Kit</a>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary">Join the waitlist</button>
-          <p class="form-error" role="alert">Add your email and pick a track, then try again.</p>
-          <p class="microcopy"><svg class="ico" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m4 7 8 6 8-6"/></svg> No spam, ever. Just the launch and the occasional note.</p>
         </form>
-        <div class="success" role="status" aria-live="polite">
-          <span class="check"><svg class="ico ico-sm" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
-          <h3>You're on the list.</h3>
-          <p>Check your inbox for a quick confirmation. See you on the inside.</p>
-        </div>
       </div>
     </div>
   </div>
@@ -495,7 +523,7 @@
 <footer>
   <div class="wrap foot">
     <div>
-      <div class="brand">Cohort</div>
+      <div class="brand"><img src="images/cohort-wordmark-v2.png" alt="Cohort"></div>
       <div class="tag">Made in Georgia, by a therapist, for therapists.</div>
     </div>
     <div class="meta">
@@ -515,44 +543,7 @@
     els.forEach(function(e){io.observe(e)});
   })();
 
-  // Progressive-enhancement form handling: inline success without leaving the page.
-  (function(){
-    document.querySelectorAll('.signup-form').forEach(function(form){
-      var wrap = form.parentElement;             // .signup
-      var success = wrap.querySelector('.success');
-      var errEl = form.querySelector('.form-error');
-
-      form.addEventListener('submit', function(e){
-        var email = form.querySelector('input[type=email]');
-        var track = form.querySelector('select');
-        var ok = email.value.trim() !== '' && email.checkValidity() && track.value !== '';
-        if(!ok){ e.preventDefault(); errEl.classList.add('show'); return; }
-        errEl.classList.remove('show');
-
-        // If the endpoint is still the placeholder, let the normal POST happen
-        // (so nothing silently breaks before you wire Formspree up).
-        if(form.action.indexOf('REPLACE_WITH_YOUR_FORM_ID') !== -1){ return; }
-
-        e.preventDefault();
-        var btn = form.querySelector('button[type=submit]');
-        var label = btn.textContent;
-        btn.textContent = 'Joining...'; btn.disabled = true;
-
-        fetch(form.action, {
-          method:'POST',
-          body:new FormData(form),
-          headers:{'Accept':'application/json'}
-        }).then(function(r){
-          if(r.ok){ form.style.display='none'; success.classList.add('show'); success.scrollIntoView({behavior:'smooth',block:'center'}); }
-          else { throw new Error('bad response'); }
-        }).catch(function(){
-          btn.textContent = label; btn.disabled = false;
-          errEl.textContent = 'Something went wrong on our end. Try again in a moment.';
-          errEl.classList.add('show');
-        });
-      });
-    });
-  })();
 </script>
+<script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
 </body>
 </html>
