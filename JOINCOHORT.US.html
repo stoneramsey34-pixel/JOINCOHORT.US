@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--
+  ============================================================
+  COHORT  ·  waitlist landing page  ·  joincohort.us
+  ============================================================
+  BEFORE YOU DEPLOY, do two things:
+
+  1. FORM ENDPOINT
+     Search this file for:  REPLACE_WITH_YOUR_FORM_ID
+     Create a free form at https://formspree.io, grab its ID,
+     and paste it into the form action (there's only one).
+     The page works without JS (plain Formspree POST) and
+     upgrades to an inline success message when JS is on.
+
+  2. CONTACT EMAIL
+     Search for:  hello@joincohort.us
+     Set that inbox up on your domain, or swap it for whatever
+     address you want public.
+
+  Then drop this file in a Cloudflare Pages project as index.html
+  and point joincohort.us at it. That's it.
+  ============================================================
+-->
+
+<title>Cohort — Get licensed without going it alone</title>
+<meta name="description" content="Cohort keeps your hours straight, shows you the exact next step toward your license, and connects you with clinicians on the same path. Built by a therapist. Free for prelicensed clinicians.">
+
+<!-- Social preview (for sharing the link in the Facebook group). Add an og:image later if you make one. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cohort — Get licensed without going it alone">
+<meta property="og:description" content="Track your hours, know your next step, and find your people. Built by a therapist, for therapists. Free for prelicensed clinicians.">
+<meta property="og:url" content="https://joincohort.us">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --cream:#FAF9F5;
+    --surface:#FFFDF9;
+    --surface-2:#F4F3EE;
+    --slate:#141413;
+    --ink-2:#3A3733;
+    --muted:#615D52;        /* readable secondary text, passes AA on cream */
+    --faint:#8C8779;        /* labels / non-essential only */
+    --border:#E9E4D8;
+    --border-2:#DED8C9;
+    --terracotta:#DE7356;   /* primary actions / active only */
+    --terracotta-deep:#BC5536; /* accessible terracotta for small text + links */
+    --terracotta-soft:#F6E4DC;
+    --sage:#5A8F6E;
+    --sage-deep:#3F6E51;
+    --sage-soft:#E3EEE7;
+    --gold:#CDA23E;
+    --shadow:0 1px 3px rgba(20,20,19,0.05),0 8px 24px rgba(20,20,19,0.04);
+    --shadow-sm:0 1px 4px rgba(20,20,19,0.06);
+    --radius:14px;
+    --radius-sm:8px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+  body{
+    background:var(--cream);
+    color:var(--slate);
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:16px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  h1,h2,h3,.serif{font-family:'Fraunces',Georgia,serif;letter-spacing:.005em;line-height:1.12;font-weight:600}
+
+  a{color:var(--terracotta-deep);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  .reading{max-width:680px;margin:0 auto}
+
+  .ico{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;width:20px;height:20px}
+  .ico-sm{width:16px;height:16px;stroke-width:2.2}
+
+  /* ---------- header ---------- */
+  header{position:sticky;top:0;z-index:50;background:rgba(250,249,245,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  .bar{display:flex;align-items:center;justify-content:space-between;height:64px;gap:24px}
+  .brand{font-family:'Fraunces',serif;font-weight:600;font-size:23px;color:var(--slate);letter-spacing:.01em}
+  .brand:hover{text-decoration:none}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;border-radius:var(--radius-sm);
+    font-family:'Inter';font-weight:600;font-size:15px;cursor:pointer;transition:background .18s ease,transform .18s ease;
+    padding:12px 20px;min-height:44px;white-space:nowrap}
+  .btn-primary{background:var(--terracotta);color:#FFFDF9}
+  .btn-primary:hover{background:var(--terracotta-deep);text-decoration:none}
+  .btn-primary:active{transform:translateY(1px)}
+  .btn-ghost{background:transparent;color:var(--slate);border:1px solid var(--border-2);padding:10px 16px}
+  .btn-ghost:hover{background:var(--surface-2);text-decoration:none}
+  :focus-visible{outline:2.5px solid var(--terracotta-deep);outline-offset:2px;border-radius:4px}
+
+  .header-cta{font-size:14px;padding:9px 16px;min-height:40px}
+  @media(max-width:560px){.header-cta{display:none}}
+
+  .navlinks{display:flex;align-items:center;gap:24px;flex:1;justify-content:center}
+  .navlinks a{color:var(--slate);font-weight:500;font-size:14px}
+  .navlinks a:hover{color:var(--terracotta-deep)}
+  @media(max-width:760px){.navlinks{display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding:64px 0 56px;overflow:hidden}
+  .hero h1{font-size:clamp(38px,6vw,62px);max-width:14ch;margin-bottom:22px}
+  .hero .lede{font-size:clamp(17px,2.2vw,20px);color:var(--muted);max-width:54ch;margin-bottom:32px}
+
+  /* signup form */
+  .signup{max-width:560px}
+  .field-row{display:flex;gap:10px;flex-wrap:wrap}
+  .signup label{display:block;font-size:13px;font-weight:600;color:var(--muted);margin:0 0 6px 2px}
+  .signup input[type=email],.signup select{
+    width:100%;font-family:'Inter';font-size:16px;color:var(--slate);background:var(--surface);
+    border:1px solid var(--border-2);border-radius:var(--radius-sm);padding:13px 14px;min-height:50px;transition:border-color .15s ease,box-shadow .15s ease}
+  .signup input::placeholder{color:var(--faint)}
+  .signup input:focus,.signup select:focus{outline:none;border-color:var(--terracotta);box-shadow:0 0 0 3px var(--terracotta-soft)}
+  .f-email{flex:1 1 230px}
+  .f-track{flex:1 1 190px}
+  .signup .btn-primary{width:100%;margin-top:12px;font-size:16px;padding:14px 20px;min-height:52px}
+  .microcopy{font-size:13.5px;color:var(--faint);margin-top:12px;display:flex;align-items:center;gap:7px}
+  .microcopy .ico{width:14px;height:14px}
+  .form-error{color:#B23B3B;font-size:13.5px;margin-top:10px;display:none}
+  .form-error.show{display:block}
+
+  .success{display:none;background:var(--sage-soft);border:1px solid #C5DECF;border-radius:var(--radius);padding:22px 24px}
+  .success.show{display:block}
+  .success h3{font-size:20px;margin-bottom:6px;color:var(--sage-deep)}
+  .success p{color:var(--muted);font-size:15px}
+  .success .check{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:999px;background:var(--sage);color:#fff;margin-bottom:12px}
+
+  /* ---------- generic section ---------- */
+  section{padding:56px 0;scroll-margin-top:72px}
+  .sec-eyebrow{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--terracotta-deep);margin-bottom:14px}
+  .sec-title{font-size:clamp(28px,4vw,40px);max-width:18ch;margin-bottom:18px}
+
+  .divider{height:1px;background:var(--border);max-width:1080px;margin:0 auto}
+
+  /* pillars */
+  .pillar{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:18px}
+  .pillar+.pillar{margin-top:30px}
+  .pillar.flip .ptext{order:2}
+  .pnum{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);margin-bottom:14px}
+  .pnum .ico{color:var(--terracotta-deep);width:18px;height:18px}
+  .pillar h3{font-size:26px;margin-bottom:12px}
+  .pillar p{color:var(--muted);font-size:16.5px;max-width:46ch}
+  @media(max-width:820px){.pillar,.pillar.flip{grid-template-columns:1fr;gap:24px}.pillar.flip .ptext{order:0}}
+
+  /* product preview cards */
+  .pcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
+  .pcard .ph{display:flex;align-items:center;gap:9px;font-size:12.5px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);margin-bottom:16px}
+  .pcard .ph .ico{width:16px;height:16px;color:var(--terracotta-deep)}
+  .statline{margin-bottom:18px}
+  .statline:last-child{margin-bottom:0}
+  .statline .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+  .statline .lab{font-size:14px;color:var(--ink-2);font-weight:500}
+  .statline .num{font-family:'Fraunces',serif;font-weight:600;font-size:19px}
+  .statline .num small{font-family:'Inter';font-weight:500;font-size:13px;color:var(--faint)}
+  .track{height:8px;border-radius:999px;background:var(--surface-2);position:relative;overflow:hidden}
+  .track>i{position:absolute;left:0;top:0;bottom:0;border-radius:999px}
+  .fill-terra{background:var(--terracotta)}
+  .fill-sage{background:var(--sage)}
+  /* step path signature */
+  .steps{position:relative;padding-left:8px}
+  .step{display:flex;gap:16px;position:relative;padding-bottom:22px}
+  .step:last-child{padding-bottom:0}
+  .step .rail{position:absolute;left:13px;top:26px;bottom:0;width:2px;background:var(--border-2)}
+  .step:last-child .rail{display:none}
+  .step .dot{width:28px;height:28px;border-radius:999px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--surface-2);border:2px solid var(--border-2);color:var(--faint);z-index:1}
+  .step.done .dot{background:var(--sage);border-color:var(--sage);color:#fff}
+  .step.now .dot{background:var(--surface);border-color:var(--terracotta);color:var(--terracotta-deep);box-shadow:0 0 0 4px var(--terracotta-soft)}
+  .step .lab{font-size:15.5px;font-weight:500;color:var(--ink-2);padding-top:3px}
+  .step.now .lab{font-weight:600;color:var(--slate)}
+  .step .tag{font-size:12px;font-weight:600;color:var(--terracotta-deep);display:block;margin-top:2px}
+
+  /* free panel */
+  .free{background:linear-gradient(180deg,#FBF1EC 0%,#F7E7DF 100%)}
+  .free .sec-title{max-width:16ch}
+  .free .big{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(40px,7vw,72px);color:var(--terracotta-deep);line-height:1;margin:6px 0 22px}
+  .free p{font-size:17.5px;color:var(--ink-2);max-width:56ch}
+  .free p+p{margin-top:16px}
+  .free .nb{font-weight:600;color:var(--slate)}
+
+  /* letter */
+  .letter{background:var(--surface-2)}
+  .letter .sig-row{display:flex;align-items:center;gap:14px;margin-bottom:30px}
+  .letter .avatar{width:54px;height:54px;border-radius:999px;background:var(--terracotta);color:#FFFDF9;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:600;font-size:22px;flex-shrink:0}
+  .letter .who{font-weight:600;font-size:16px;color:var(--slate)}
+  .letter .who small{display:block;font-weight:400;font-size:13.5px;color:var(--muted);margin-top:2px}
+  .letter h2{font-size:clamp(26px,4vw,38px);margin-bottom:26px;max-width:20ch}
+  .letter .body p{font-size:17px;color:var(--ink-2);margin-bottom:18px;line-height:1.72}
+  .letter .body em{font-style:italic;color:var(--terracotta-deep);font-weight:500}
+  .letter .pull{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(21px,3vw,27px);line-height:1.35;color:var(--slate);
+    border-left:3px solid var(--terracotta);padding:6px 0 6px 22px;margin:30px 0}
+  .signoff{margin-top:30px;font-family:'Fraunces',serif;font-size:19px;color:var(--slate)}
+  .signoff small{display:block;font-family:'Inter';font-size:14px;color:var(--muted);font-weight:400;margin-top:4px}
+
+  /* movement */
+  .movement .cohort-dots{display:flex;align-items:center;margin:0 0 28px}
+  .movement .cohort-dots .av{width:40px;height:40px;border-radius:999px;border:2.5px solid var(--cream);margin-left:-10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#FFFDF9;font-family:'Inter'}
+  .movement .cohort-dots .av:first-child{margin-left:0}
+  .movement p{font-size:17.5px;color:var(--muted);max-width:58ch}
+  .movement p+p{margin-top:16px}
+  .movement .nb{color:var(--slate);font-weight:600}
+
+  /* faq */
+  .faq{background:var(--surface-2)}
+  .qa{border-top:1px solid var(--border);padding:22px 0;max-width:760px;margin:0 auto}
+  .qa:first-of-type{border-top:none}
+  .qa h3{font-family:'Inter';font-weight:600;font-size:17.5px;margin-bottom:8px;color:var(--slate)}
+  .qa p{color:var(--muted);font-size:15.5px;max-width:62ch}
+
+  /* final cta */
+  .final{padding:72px 0}
+  .final .box{background:var(--slate);border-radius:22px;padding:clamp(32px,5vw,56px);text-align:center;color:var(--cream)}
+  .final h2{color:#FFFDF9;font-size:clamp(28px,4.5vw,42px);margin-bottom:14px;max-width:18ch;margin-left:auto;margin-right:auto}
+  .final p{color:#D7D2C6;font-size:17px;max-width:48ch;margin:0 auto 28px}
+  .final .signup{margin:0 auto}
+  .final .signup label{color:#C8C3B6}
+  .final .signup input,.final .signup select{background:#242220;border-color:#3A3835;color:#FAF9F5}
+  .final .signup input::placeholder{color:#8C8779}
+  .final .microcopy{color:#A8A293;justify-content:center}
+  .final .success{background:#242220;border-color:#3A3835}
+  .final .success h3{color:#7AB893}
+  .final .success p{color:#C8C3B6}
+
+  /* footer */
+  footer{padding:48px 0;border-top:1px solid var(--border)}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .foot .brand{font-size:20px}
+  .foot .meta{font-size:14px;color:var(--muted)}
+  .foot .meta a{color:var(--terracotta-deep)}
+  .foot .tag{font-size:14px;color:var(--faint)}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a href="#top" class="brand">Cohort</a>
+    <nav class="navlinks">
+      <a href="#what-is-cohort">What is Cohort?</a>
+      <a href="#letter">A Letter From Stone</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#join" class="btn btn-primary header-cta">Join the waitlist</a>
+  </div>
+</header>
+
+<a id="top"></a>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="join">
+  <div class="wrap">
+    <h1>Get licensed without questioning if you are doing it right. Let us worry about that.</h1>
+    <p class="lede">Cohort is the new therapist home built for prelicensed therapists and supervisors. It lets you know your next step to licensure, gives you an hour tracker tailored to your license track, and allows you to connect with your cohort along the way. Oh, and by the way, always FREE for prelicensed therapists.</p>
+
+    <div class="signup" id="form-hero">
+      <form class="signup-form" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" method="POST" novalidate>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+        <input type="hidden" name="source" value="joincohort.us hero">
+        <div class="field-row">
+          <div class="f-email">
+            <label for="email-hero">Email</label>
+            <input id="email-hero" type="email" name="email" placeholder="you@email.com" required autocomplete="email">
+          </div>
+          <div class="f-track">
+            <label for="track-hero">Your license track</label>
+            <select id="track-hero" name="license_track" required>
+              <option value="" selected disabled>Where are you headed?</option>
+              <option value="LAMFT">LAMFT / MFT associate</option>
+              <option value="LAPC">LAPC / APC (counseling)</option>
+              <option value="LMSW">LMSW (social work)</option>
+              <option value="Other">Other / not sure yet</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Join the waitlist</button>
+        <p class="form-error" role="alert">Add your email and pick a track, then try again.</p>
+        <p class="microcopy"><svg class="ico" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m4 7 8 6 8-6"/></svg> No spam. A heads up the day Cohort opens, and a few notes from me along the way.</p>
+      </form>
+      <div class="success" role="status" aria-live="polite">
+        <span class="check"><svg class="ico ico-sm" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+        <h3>You're on the list.</h3>
+        <p>Check your inbox for a quick confirmation. You'll be first through the door when Cohort opens.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===================== WHAT IT DOES ===================== -->
+<section id="what-is-cohort">
+  <div class="wrap">
+    <div class="reveal" style="margin-bottom:40px">
+      <p class="sec-eyebrow">What Cohort does</p>
+      <h2 class="sec-title">Three things, done right.</h2>
+    </div>
+
+    <!-- pillar 1 -->
+    <div class="pillar reveal">
+      <div class="ptext">
+        <p class="pnum"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg> Track your hours, correctly</p>
+        <h3>Direct clinical and supervision, kept separate.</h3>
+        <p>The board counts them as two different things, so Cohort does too. Log a session in seconds, and your supervisor can review and approve each entry right in the app. Import what you've already tracked by CSV or PDF, and watch both totals move toward the numbers your license actually requires.</p>
+      </div>
+      <div class="pcard">
+        <div class="ph"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg> My hours</div>
+        <div class="statline">
+          <div class="top"><span class="lab">Direct clinical</span><span class="num">842 <small>/ 2,000</small></span></div>
+          <div class="track"><i class="fill-terra" style="width:42%"></i></div>
+        </div>
+        <div class="statline">
+          <div class="top"><span class="lab">Supervision</span><span class="num">47 <small>/ 100</small></span></div>
+          <div class="track"><i class="fill-sage" style="width:47%"></i></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- pillar 2 -->
+    <div class="pillar flip reveal">
+      <div class="ptext">
+        <p class="pnum"><svg class="ico" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg> Always know your next step</p>
+        <h3>The whole path, laid out in order.</h3>
+        <p>Cohort shows you what's done, what's next, and what the board needs to see, so you stop guessing and start moving. No more piecing it together from forum threads and outdated PDFs.</p>
+      </div>
+      <div class="pcard">
+        <div class="ph"><svg class="ico" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg> Your licensure path</div>
+        <div class="steps">
+          <div class="step done"><div class="rail"></div><div class="dot"><svg class="ico ico-sm" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div><div class="lab">Find an approved supervisor</div></div>
+          <div class="step done"><div class="rail"></div><div class="dot"><svg class="ico ico-sm" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div><div class="lab">Sign your supervision contract</div></div>
+          <div class="step now"><div class="rail"></div><div class="dot"><svg class="ico ico-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/></svg></div><div class="lab">Log your direct and supervision hours<span class="tag">You're here</span></div></div>
+          <div class="step"><div class="rail"></div><div class="dot"></div><div class="lab">Reach 2,000 direct + 100 supervision</div></div>
+          <div class="step"><div class="rail"></div><div class="dot"></div><div class="lab">Submit your application to the board</div></div>
+          <div class="step"><div class="dot"></div><div class="lab">Get licensed</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- pillar 3 -->
+    <div class="pillar reveal">
+      <div class="ptext">
+        <p class="pnum"><svg class="ico" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Find your people again</p>
+        <h3>A verified community of clinicians on the same path.</h3>
+        <p>Refer to each other. Staff cases. Ask the questions you feel dumb asking. The cohort you lost at graduation, rebuilt with everyone else figuring this out right now.</p>
+      </div>
+      <div class="pcard">
+        <div class="ph"><svg class="ico" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Your cohort</div>
+        <div class="movement" style="margin:4px 0 14px">
+          <div class="cohort-dots">
+            <span class="av" style="background:#DE7356">MR</span>
+            <span class="av" style="background:#5A8F6E">JT</span>
+            <span class="av" style="background:#CDA23E">AB</span>
+            <span class="av" style="background:#8C8779">KS</span>
+            <span class="av" style="background:#BC5536">DL</span>
+            <span class="av" style="background:#3F6E51;font-size:12px">+</span>
+          </div>
+        </div>
+        <p style="font-size:14.5px;color:var(--muted);max-width:34ch">Verified therapists, walking the same road, within reach when you need them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FREE ===================== -->
+<section class="free">
+  <div class="wrap reveal">
+    <p class="sec-eyebrow">No catch</p>
+    <h2 class="sec-title">Free. For real.</h2>
+    <div class="big">$0</div>
+    <p>Prelicensure is expensive enough. Supervision, exams, application fees, all of it landing while you're building a caseload from nothing. <span class="nb">You do not need one more subscription standing between you and your license.</span></p>
+    <p>Cohort is free for prelicensed clinicians. Not a trial. Not a teaser that locks the useful parts behind a paywall. Getting licensed here will always cost you nothing.</p>
+  </div>
+</section>
+
+<!-- ===================== LETTER ===================== -->
+<section class="letter" id="letter">
+  <div class="wrap reading reveal">
+    <div class="sig-row">
+      <div class="avatar">S</div>
+      <div class="who">A letter from Stone<small>Stone Ramsey, LAMFT · Doctoral Candidate, MFT · Creator of Cohort</small></div>
+    </div>
+
+    <h2>I built something I couldn't believe wasn't there to begin with.</h2>
+
+    <div class="body">
+      <p>I was a fresh graduate from a Marriage and Family Therapy program in Tennessee when I moved back down to Georgia. Wide-eyed, ready to start my career and make a difference in this world. <em>And finally get paid for it.</em> But there was one thing: I had zero connections in the therapy world.</p>
+
+      <p>I went from a cohort of twelve who were with me every step to graduation, learning how to be therapists together, supporting each other, conceptualizing cases together. Then on graduation day, it all stopped. We all had to go our separate ways.</p>
+
+      <p>Me? I had to move out of state into new laws, new regulations, new systems, with no one there to guide me through the most ambiguous and confusing part of our profession: prelicensure. I was alone, confused, and stressed, all while trying to build a caseload.</p>
+
+      <p class="pull">I didn't know what step came before what. I struggled to find a supervisor. I was praying my forms were going to the board the right way. The waiting, the uncertainty, the fear of having to start over.</p>
+
+      <p>I don't even want to get into the financial side of it. It was a grueling season.</p>
+
+      <p>Somewhere in there, I learned that a therapist's main mode of community is Facebook groups. And there was no group for prelicensed therapists in Georgia. So I made one. The response, just from making it, was immediate and warm.</p>
+
+      <p>Then it hit me. Everyone in this stage was feeling exactly what I was feeling. The same struggle to find a good practice, the right supervisor, to get board submissions correct, to track hours, to not feel so alone.</p>
+
+      <p>Therapists serve people better when they're supported, connected, encouraged, and equipped with the right tools. There is a clear need for a therapist home. An official community where everyone gets it and everyone's verified. A place where you can conceptualize cases, refer to each other, and lift one another up. A platform built by therapists, made for therapists.</p>
+
+      <p>Let's stop trying to figure this out by ourselves and start linking arms. Join me in turning what can be the loneliest profession into the tightest-knit community there is.</p>
+
+      <p class="signoff">Stone<small>Founder, Cohort</small></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MOVEMENT ===================== -->
+<section class="movement">
+  <div class="wrap reading reveal">
+    <p class="sec-eyebrow">The bigger idea</p>
+    <h2 class="sec-title">We're building a home for therapists.</h2>
+    <p>The tracker is how it starts. It's the thing that gets your hours in order and shows you the way to your license. But it's not the point.</p>
+    <p><span class="nb">The point is the community.</span> A verified network of clinicians who refer to each other, staff cases together, and have each other's backs through the part of this career nobody warns you about. Built by therapists, for therapists, starting right here in Georgia.</p>
+    <p>This is the start of something. Get in early and help shape what it becomes.</p>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="faq" id="faq">
+  <div class="wrap reveal">
+    <p class="sec-eyebrow" style="text-align:center">Before you ask</p>
+    <h2 class="sec-title" style="text-align:center;max-width:none;margin:0 auto 36px">Fair questions.</h2>
+
+    <div class="qa"><h3>Is it really free?</h3><p>Yes. Free for prelicensed clinicians, permanently. Tracking your hours and getting licensed will never cost you anything on Cohort.</p></div>
+    <div class="qa"><h3>Who is it for right now?</h3><p>Georgia first. MFT associates (LAMFT) at launch, with counseling (LAPC) and social work (LMSW) close behind. If you're prelicensed in Georgia, you're exactly who we're building for.</p></div>
+    <div class="qa"><h3>When does it open?</h3><p>We're heads down building it now. Get on the waitlist and you'll be among the first in the day it opens.</p></div>
+    <div class="qa"><h3>Do I have to start my hours over?</h3><p>No. Bring what you've already logged in by CSV or PDF and pick up right where you are.</p></div>
+    <div class="qa"><h3>Who's behind it?</h3><p>Stone Ramsey, a Georgia LAMFT and doctoral candidate in MFT. I'm building Cohort because I needed it and couldn't find it.</p></div>
+  </div>
+</section>
+
+<!-- ===================== FINAL CTA ===================== -->
+<section class="final">
+  <div class="wrap">
+    <div class="box reveal">
+      <h2>Be part of the first cohort.</h2>
+      <p>Get on the list. You'll be first through the door when Cohort opens, and you'll help shape what it becomes.</p>
+      <div class="signup" id="form-final">
+        <form class="signup-form" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" method="POST" novalidate>
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+          <input type="hidden" name="source" value="joincohort.us footer">
+          <div class="field-row">
+            <div class="f-email">
+              <label for="email-final">Email</label>
+              <input id="email-final" type="email" name="email" placeholder="you@email.com" required autocomplete="email">
+            </div>
+            <div class="f-track">
+              <label for="track-final">Your license track</label>
+              <select id="track-final" name="license_track" required>
+                <option value="" selected disabled>Where are you headed?</option>
+                <option value="LAMFT">LAMFT / MFT associate</option>
+                <option value="LAPC">LAPC / APC (counseling)</option>
+                <option value="LMSW">LMSW (social work)</option>
+                <option value="Other">Other / not sure yet</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Join the waitlist</button>
+          <p class="form-error" role="alert">Add your email and pick a track, then try again.</p>
+          <p class="microcopy"><svg class="ico" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m4 7 8 6 8-6"/></svg> No spam, ever. Just the launch and the occasional note.</p>
+        </form>
+        <div class="success" role="status" aria-live="polite">
+          <span class="check"><svg class="ico ico-sm" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <h3>You're on the list.</h3>
+          <p>Check your inbox for a quick confirmation. See you on the inside.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap foot">
+    <div>
+      <div class="brand">Cohort</div>
+      <div class="tag">Made in Georgia, by a therapist, for therapists.</div>
+    </div>
+    <div class="meta">
+      <a href="mailto:hello@joincohort.us">hello@joincohort.us</a> &nbsp;·&nbsp; joincohort.us &nbsp;·&nbsp; © 2026 Cohort
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal (respects reduced motion via CSS fallback)
+  (function(){
+    var els = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
+    },{threshold:0.12});
+    els.forEach(function(e){io.observe(e)});
+  })();
+
+  // Progressive-enhancement form handling: inline success without leaving the page.
+  (function(){
+    document.querySelectorAll('.signup-form').forEach(function(form){
+      var wrap = form.parentElement;             // .signup
+      var success = wrap.querySelector('.success');
+      var errEl = form.querySelector('.form-error');
+
+      form.addEventListener('submit', function(e){
+        var email = form.querySelector('input[type=email]');
+        var track = form.querySelector('select');
+        var ok = email.value.trim() !== '' && email.checkValidity() && track.value !== '';
+        if(!ok){ e.preventDefault(); errEl.classList.add('show'); return; }
+        errEl.classList.remove('show');
+
+        // If the endpoint is still the placeholder, let the normal POST happen
+        // (so nothing silently breaks before you wire Formspree up).
+        if(form.action.indexOf('REPLACE_WITH_YOUR_FORM_ID') !== -1){ return; }
+
+        e.preventDefault();
+        var btn = form.querySelector('button[type=submit]');
+        var label = btn.textContent;
+        btn.textContent = 'Joining...'; btn.disabled = true;
+
+        fetch(form.action, {
+          method:'POST',
+          body:new FormData(form),
+          headers:{'Accept':'application/json'}
+        }).then(function(r){
+          if(r.ok){ form.style.display='none'; success.classList.add('show'); success.scrollIntoView({behavior:'smooth',block:'center'}); }
+          else { throw new Error('bad response'); }
+        }).catch(function(){
+          btn.textContent = label; btn.disabled = false;
+          errEl.textContent = 'Something went wrong on our end. Try again in a moment.';
+          errEl.classList.add('show');
+        });
+      });
+    });
+  })();
+</script>
+</body>
+</html>
