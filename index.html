@@ -39,7 +39,17 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:ital,wght@0,400;0,500;0,600;1,500&family=Hanken+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Favicons -->
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/cohort-favicon-terracotta.svg">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#DE7356">
 
 <style>
   :root{
@@ -78,7 +88,7 @@
     text-rendering:optimizeLegibility;
   }
 
-  h1,h2,h3,.serif{font-family:'Fraunces',Georgia,serif;letter-spacing:.005em;line-height:1.12;font-weight:600}
+  h1,h2,h3,.serif{font-family:'Hanken Grotesk',sans-serif;letter-spacing:.005em;line-height:1.12;font-weight:600}
 
   a{color:var(--terracotta-deep);text-decoration:none}
   a:hover{text-decoration:underline}
@@ -92,12 +102,12 @@
   /* ---------- header ---------- */
   header{position:sticky;top:0;z-index:50;background:rgba(250,249,245,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
   .bar{display:flex;align-items:center;justify-content:space-between;height:64px;gap:24px}
-  .brand{display:inline-flex;align-items:center}
+  .brand{display:inline-flex;align-items:center;padding:8px 0}
   .brand:hover{text-decoration:none}
   .brand img{height:28px;width:auto;display:block}
 
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;border-radius:var(--radius-sm);
-    font-family:'Inter';font-weight:600;font-size:15px;cursor:pointer;transition:background .18s ease,transform .18s ease;
+    font-family:'Inter',system-ui,sans-serif;font-weight:600;font-size:15px;text-transform:uppercase;letter-spacing:.03em;cursor:pointer;transition:background .18s ease,transform .18s ease;
     padding:12px 20px;min-height:44px;white-space:nowrap}
   .btn-primary{background:var(--terracotta);color:#FFFDF9}
   .btn-primary:hover{background:var(--terracotta-deep);text-decoration:none}
@@ -106,13 +116,41 @@
   .btn-ghost:hover{background:var(--surface-2);text-decoration:none}
   :focus-visible{outline:2.5px solid var(--terracotta-deep);outline-offset:2px;border-radius:4px}
 
-  .header-cta{font-size:14px;padding:9px 16px;min-height:40px}
-  @media(max-width:560px){.header-cta{display:none}}
+  .header-cta{font-size:14px;padding:9px 16px;min-height:44px}
+  @media(max-width:820px){.header-cta{display:none}}
 
   .navlinks{display:flex;align-items:center;gap:24px;flex:1;justify-content:center}
-  .navlinks a{color:var(--slate);font-weight:500;font-size:14px}
+  .navlinks a{font-family:'Hanken Grotesk',sans-serif;font-weight:600;color:var(--slate);font-size:15px;padding:10px 0}
   .navlinks a:hover{color:var(--terracotta-deep)}
-  @media(max-width:760px){.navlinks{display:none}}
+  @media(max-width:820px){.navlinks{display:none}}
+
+  /* ---------- mobile nav ---------- */
+  .hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;
+    width:44px;height:44px;flex-shrink:0;border:none;background:transparent;cursor:pointer;border-radius:var(--radius-sm)}
+  .hamburger:hover{background:var(--surface-2)}
+  .hamburger span{display:block;width:22px;height:2px;background:var(--slate);border-radius:2px;transition:transform .25s ease,opacity .25s ease}
+  .hamburger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .hamburger[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .hamburger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  @media(max-width:820px){.hamburger{display:flex}}
+
+  .mobile-menu{position:fixed;top:64px;left:0;right:0;z-index:49;background:var(--cream);
+    border-bottom:1px solid var(--border);box-shadow:0 16px 32px rgba(20,20,19,.10);
+    display:flex;flex-direction:column;padding:8px 24px 20px;
+    visibility:hidden;opacity:0;transform:translateY(-8px);
+    transition:opacity .22s ease,transform .22s ease,visibility 0s linear .22s}
+  .mobile-menu.open{visibility:visible;opacity:1;transform:translateY(0);transition:opacity .22s ease,transform .22s ease}
+  .mobile-menu a{font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:17px;color:var(--slate);
+    padding:0 4px;border-bottom:1px solid var(--border);min-height:52px;display:flex;align-items:center}
+  .mobile-menu a:hover{color:var(--terracotta-deep)}
+  .mobile-menu .mobile-cta{font-family:'Inter',system-ui,sans-serif;font-weight:600;font-size:15px;
+    justify-content:center;border-bottom:none;margin-top:14px;border-radius:var(--radius-sm);
+    background:var(--terracotta);color:#FFFDF9;min-height:48px}
+  .mobile-menu .mobile-cta:hover{background:var(--terracotta-deep);color:#FFFDF9}
+  @media(min-width:820px){.mobile-menu{display:none}}
+  @media(prefers-reduced-motion:reduce){
+    .mobile-menu,.mobile-menu.open,.hamburger span{transition:none}
+  }
 
   /* ---------- hero ---------- */
   .hero{position:relative;padding:64px 0 56px;overflow:hidden}
@@ -120,27 +158,7 @@
   .hero .lede{font-size:clamp(17px,2.2vw,20px);color:var(--muted);max-width:54ch;margin-bottom:32px}
 
   /* signup form */
-  .signup{max-width:560px}
-  .field-row{display:flex;gap:10px;flex-wrap:wrap}
-  .signup label{display:block;font-size:13px;font-weight:600;color:var(--muted);margin:0 0 6px 2px}
-  .signup input[type=email],.signup select{
-    width:100%;font-family:'Inter';font-size:16px;color:var(--slate);background:var(--surface);
-    border:1px solid var(--border-2);border-radius:var(--radius-sm);padding:13px 14px;min-height:50px;transition:border-color .15s ease,box-shadow .15s ease}
-  .signup input::placeholder{color:var(--faint)}
-  .signup input:focus,.signup select:focus{outline:none;border-color:var(--terracotta);box-shadow:0 0 0 3px var(--terracotta-soft)}
-  .f-email{flex:1 1 230px}
-  .f-track{flex:1 1 190px}
-  .signup .btn-primary{width:100%;margin-top:12px;font-size:16px;padding:14px 20px;min-height:52px}
-  .microcopy{font-size:13.5px;color:var(--faint);margin-top:12px;display:flex;align-items:center;gap:7px}
-  .microcopy .ico{width:14px;height:14px}
-  .form-error{color:#B23B3B;font-size:13.5px;margin-top:10px;display:none}
-  .form-error.show{display:block}
-
-  .success{display:none;background:var(--sage-soft);border:1px solid #C5DECF;border-radius:var(--radius);padding:22px 24px}
-  .success.show{display:block}
-  .success h3{font-size:20px;margin-bottom:6px;color:var(--sage-deep)}
-  .success p{color:var(--muted);font-size:15px}
-  .success .check{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:999px;background:var(--sage);color:#fff;margin-bottom:12px}
+  .signup{max-width:600px}
 
   .hero-subline{font-family:'Inter',system-ui,sans-serif;font-weight:600;font-size:15.5px;line-height:1.5;color:var(--ink-2);text-align:left;margin:20px 0 0}
   .hero-subline .hl{color:#BC5536}
@@ -167,14 +185,15 @@
     outline:none;border-color:#DE7356 !important;box-shadow:0 0 0 3px rgba(222,115,86,0.25) !important}
   .formkit-form[data-uid="0675894d81"] .formkit-submit{
     width:100%;background:#DE7356 !important;color:#FFFDF9 !important;font-family:'Inter',system-ui,sans-serif !important;
-    font-weight:600;font-size:16px;border:none;border-radius:8px !important;cursor:pointer;
+    font-weight:600;font-size:16px;text-transform:uppercase;letter-spacing:.03em;border:none;border-radius:8px !important;cursor:pointer;
     padding:14px 20px;min-height:52px;transition:background .18s ease}
   .formkit-form[data-uid="0675894d81"] .formkit-submit:hover{background:#BC5536 !important}
-  .formkit-form[data-uid="0675894d81"] .formkit-powered-by-convertkit{opacity:.55}
+  .formkit-form[data-uid="0675894d81"] .formkit-powered-by-convertkit{opacity:.55;font-family:'Inter',system-ui,sans-serif !important}
+  .formkit-form[data-uid="0675894d81"] .formkit-alert{font-family:'Inter',system-ui,sans-serif !important}
 
   /* ---------- generic section ---------- */
   section{padding:56px 0;scroll-margin-top:72px}
-  .sec-eyebrow{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--terracotta-deep);margin-bottom:14px}
+  .sec-eyebrow{font-family:'Hanken Grotesk',sans-serif;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--terracotta-deep);margin-bottom:14px}
   .sec-title{font-size:clamp(28px,4vw,40px);max-width:18ch;margin-bottom:18px}
 
   .divider{height:1px;background:var(--border);max-width:1080px;margin:0 auto}
@@ -197,8 +216,8 @@
   .statline:last-child{margin-bottom:0}
   .statline .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
   .statline .lab{font-size:14px;color:var(--ink-2);font-weight:500}
-  .statline .num{font-family:'Fraunces',serif;font-weight:600;font-size:19px}
-  .statline .num small{font-family:'Inter';font-weight:500;font-size:13px;color:var(--faint)}
+  .statline .num{font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:19px}
+  .statline .num small{font-family:'Inter',system-ui,sans-serif;font-weight:500;font-size:13px;color:var(--faint)}
   .substats{display:flex;justify-content:space-between;margin-top:8px;font-size:12.5px;color:var(--faint)}
   .track{height:8px;border-radius:999px;background:var(--surface-2);position:relative;overflow:hidden}
   .track>i{position:absolute;left:0;top:0;bottom:0;border-radius:999px}
@@ -220,7 +239,7 @@
   /* free panel */
   .free{background:linear-gradient(180deg,#FBF1EC 0%,#F7E7DF 100%)}
   .free .sec-title{max-width:16ch}
-  .free .big{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(40px,7vw,72px);color:var(--terracotta-deep);line-height:1;margin:6px 0 22px}
+  .free .big{font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:clamp(40px,7vw,72px);color:var(--terracotta-deep);line-height:1;margin:6px 0 22px}
   .free p{font-size:17.5px;color:var(--ink-2);max-width:56ch}
   .free p+p{margin-top:16px}
   .free .nb{font-weight:600;color:var(--slate)}
@@ -230,7 +249,7 @@
   .letter-inner{max-width:900px;display:grid;grid-template-columns:220px 1fr;gap:36px;align-items:start}
   .letter-side{display:flex;flex-direction:column;align-items:center;text-align:center}
   .letter-photo{width:200px;height:200px;border-radius:50%;object-fit:cover;display:block}
-  .letter-name{font-family:'Fraunces',serif;font-weight:700;font-size:18px;color:var(--slate);margin-top:16px}
+  .letter-name{font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:18px;color:var(--slate);margin-top:16px}
   .letter-creds{font-size:13.5px;color:var(--muted);margin-top:4px;line-height:1.5}
   @media(max-width:760px){
     .letter-inner{grid-template-columns:1fr}
@@ -239,14 +258,14 @@
   .letter h2{font-size:clamp(26px,4vw,38px);margin-bottom:26px;max-width:20ch}
   .letter .body p{font-size:17px;color:var(--ink-2);margin-bottom:18px;line-height:1.72}
   .letter .body em{font-style:italic;color:var(--terracotta-deep);font-weight:500}
-  .letter .pull{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(21px,3vw,27px);line-height:1.35;color:var(--slate);
+  .letter .pull{font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:clamp(21px,3vw,27px);line-height:1.35;color:var(--slate);
     border-left:3px solid var(--terracotta);padding:6px 0 6px 22px;margin:30px 0}
-  .signoff{margin-top:30px;font-family:'Fraunces',serif;font-size:19px;color:var(--slate)}
-  .signoff small{display:block;font-family:'Inter';font-size:14px;color:var(--muted);font-weight:400;margin-top:4px}
+  .signoff{margin-top:30px;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:19px;color:var(--slate)}
+  .signoff small{display:block;font-family:'Inter',system-ui,sans-serif;font-size:14px;color:var(--muted);font-weight:400;margin-top:4px}
 
   /* movement */
   .movement .cohort-dots{display:flex;align-items:center;margin:0 0 28px}
-  .movement .cohort-dots .av{width:40px;height:40px;border-radius:999px;border:2.5px solid var(--cream);margin-left:-10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#FFFDF9;font-family:'Inter'}
+  .movement .cohort-dots .av{width:40px;height:40px;border-radius:999px;border:2.5px solid var(--cream);margin-left:-10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#FFFDF9;font-family:'Inter',system-ui,sans-serif}
   .movement .cohort-dots .av:first-child{margin-left:0}
   .movement p{font-size:17.5px;color:var(--muted);max-width:58ch}
   .movement p+p{margin-top:16px}
@@ -256,7 +275,7 @@
   .faq{background:var(--surface-2)}
   .qa{border-top:1px solid var(--border);padding:22px 0;max-width:760px;margin:0 auto}
   .qa:first-of-type{border-top:none}
-  .qa h3{font-family:'Inter';font-weight:600;font-size:17.5px;margin-bottom:8px;color:var(--slate)}
+  .qa h3{font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:17.5px;margin-bottom:8px;color:var(--slate)}
   .qa p{color:var(--muted);font-size:15.5px;max-width:62ch}
 
   /* final cta */
@@ -265,13 +284,6 @@
   .final h2{color:#FFFDF9;font-size:clamp(28px,4.5vw,42px);margin-bottom:14px;max-width:18ch;margin-left:auto;margin-right:auto}
   .final p{color:#D7D2C6;font-size:17px;max-width:48ch;margin:0 auto 28px}
   .final .signup{margin:0 auto}
-  .final .signup label{color:#C8C3B6}
-  .final .signup input,.final .signup select{background:#242220;border-color:#3A3835;color:#FAF9F5}
-  .final .signup input::placeholder{color:#8C8779}
-  .final .microcopy{color:#A8A293;justify-content:center}
-  .final .success{background:#242220;border-color:#3A3835}
-  .final .success h3{color:#7AB893}
-  .final .success p{color:#C8C3B6}
 
   /* footer */
   footer{padding:48px 0;border-top:1px solid var(--border)}
@@ -283,23 +295,42 @@
   .foot .tag{font-size:14px;color:var(--faint)}
 
   /* reveal */
-  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1);will-change:opacity,transform}
   .reveal.in{opacity:1;transform:none}
+  .reveal.stagger-1{transition-delay:.05s}
+  .reveal.stagger-2{transition-delay:.1s}
+  .reveal.stagger-3{transition-delay:.15s}
+  .reveal.stagger-4{transition-delay:.2s}
+  .reveal.stagger-5{transition-delay:.25s}
+  .reveal.stagger-6{transition-delay:.3s}
   @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+  /* hero parallax */
+  .hero h1{transition:transform .1s linear}
+  @media (prefers-reduced-motion:reduce){.hero h1{transform:none !important;transition:none}}
 </style>
 </head>
 <body>
 
 <header>
   <div class="wrap bar">
-    <a href="#top" class="brand"><img src="images/cohort-wordmark-v2.png" alt="Cohort"></a>
+    <a href="#top" class="brand"><img src="images/cohort-wordmark.png" alt="Cohort"></a>
     <nav class="navlinks">
       <a href="#what-is-cohort">What Cohort Does</a>
       <a href="#letter">A Letter From Stone</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <a href="#signup-bottom" class="btn btn-primary header-cta">Join the waitlist</a>
+    <a href="#signup-bottom" class="btn btn-primary header-cta">JOIN THE MOVEMENT</a>
+    <button type="button" class="hamburger" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+    <a href="#what-is-cohort">What Cohort Does</a>
+    <a href="#letter">A Letter From Stone</a>
+    <a href="#faq">FAQ</a>
+    <a href="#signup-bottom" class="btn btn-primary mobile-cta">JOIN THE MOVEMENT</a>
+  </nav>
 </header>
 
 <a id="top"></a>
@@ -349,7 +380,7 @@
     </div>
 
     <!-- pillar 1 -->
-    <div class="pillar reveal">
+    <div class="pillar reveal stagger-1">
       <div class="ptext">
         <p class="pnum"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg> Track your hours, correctly</p>
         <h3>Direct clinical and supervision, kept separate.</h3>
@@ -370,7 +401,7 @@
     </div>
 
     <!-- pillar 2 -->
-    <div class="pillar flip reveal">
+    <div class="pillar flip reveal stagger-2">
       <div class="ptext">
         <p class="pnum"><svg class="ico" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg> Always know your next step</p>
         <h3>The whole path, laid out in order.</h3>
@@ -379,17 +410,17 @@
       <div class="pcard">
         <div class="ph"><svg class="ico" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg> Your licensure path</div>
         <div class="steps">
-          <div class="step done"><div class="rail"></div><div class="dot"><svg class="ico ico-sm" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div><div class="lab">Find Your Directed Experience</div></div>
-          <div class="step done"><div class="rail"></div><div class="dot"><svg class="ico ico-sm" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div><div class="lab">Discuss Plan of Supervision with Supervisor</div></div>
-          <div class="step now"><div class="rail"></div><div class="dot"><svg class="ico ico-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/></svg></div><div class="lab">Log your direct and supervision hours<span class="tag">You're here</span></div></div>
-          <div class="step"><div class="rail"></div><div class="dot"></div><div class="lab">Plan of Directed Experience with Director</div></div>
-          <div class="step"><div class="dot"></div><div class="lab">Get signature from Supervisor and Experience Director for CONTRACT AFFIDAVIT (Notarized)</div></div>
+          <div class="step done reveal stagger-1"><div class="rail"></div><div class="dot"><svg class="ico ico-sm" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div><div class="lab">Find Your Directed Experience</div></div>
+          <div class="step done reveal stagger-2"><div class="rail"></div><div class="dot"><svg class="ico ico-sm" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div><div class="lab">Find A Supervisor</div></div>
+          <div class="step now reveal stagger-3"><div class="rail"></div><div class="dot"><svg class="ico ico-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/></svg></div><div class="lab">Discuss Plan of Supervision with Supervisor<span class="tag">You're here</span></div></div>
+          <div class="step reveal stagger-4"><div class="rail"></div><div class="dot"></div><div class="lab">Plan of Directed Experience with Director</div></div>
+          <div class="step reveal stagger-5"><div class="dot"></div><div class="lab">Get signature from Supervisor and Experience Director for CONTRACT AFFIDAVIT (Notarized)</div></div>
         </div>
       </div>
     </div>
 
     <!-- pillar 3 -->
-    <div class="pillar reveal">
+    <div class="pillar reveal stagger-3">
       <div class="ptext">
         <p class="pnum"><svg class="ico" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Find your people again</p>
         <h3>A verified community of clinicians on the same path.</h3>
@@ -478,12 +509,12 @@
     <p class="sec-eyebrow" style="text-align:center">Before you ask</p>
     <h2 class="sec-title" style="text-align:center;max-width:none;margin:0 auto 36px">Fair questions.</h2>
 
-    <div class="qa"><h3>Is it really free?</h3><p>Yes. Free for prelicensed clinicians, permanently. It's also free for supervisors right now to review and approve their supervisees' hours. Tracking your hours and getting licensed will never cost you anything on Cohort.</p></div>
-    <div class="qa"><h3>Who is it for right now?</h3><p>Prelicensed MFTs, APCs, and LMSWs in Georgia, plus the supervisors who approve their hours. If you're prelicensed in Georgia or you supervise someone who is, you're exactly who we're building for.</p></div>
-    <div class="qa"><h3>What if I am not in Georgia?</h3><p>That is ok! You can still utilize the hours, supervisor approval, and community features. We are working to extend the licensure steps to your state as soon as possible! Share Cohort with others in your state to speed up the process!</p></div>
-    <div class="qa"><h3>When does it open?</h3><p>We're heads down building it now. Get on the waitlist and you'll be among the first in the day it opens.</p></div>
-    <div class="qa"><h3>Do I have to start my hours over?</h3><p>No. Bring what you've already logged in by CSV or PDF and pick up right where you are.</p></div>
-    <div class="qa"><h3>Who's behind it?</h3><p>Stone Ramsey, a Georgia LAMFT and doctoral candidate in MFT. I'm building Cohort because I needed it and couldn't find it.</p></div>
+    <div class="qa reveal stagger-1"><h3>Is it really free?</h3><p>Yes. Free for prelicensed clinicians, permanently. It's also free for supervisors right now to review and approve their supervisees' hours. Tracking your hours and getting licensed will never cost you anything on Cohort.</p></div>
+    <div class="qa reveal stagger-2"><h3>Who is it for right now?</h3><p>Prelicensed MFTs, APCs, and LMSWs in Georgia, plus the supervisors who approve their hours. If you're prelicensed in Georgia or you supervise someone who is, you're exactly who we're building for.</p></div>
+    <div class="qa reveal stagger-3"><h3>What if I am not in Georgia?</h3><p>That is ok! You can still utilize the hours, supervisor approval, and community features. We are working to extend the licensure steps to your state as soon as possible! Share Cohort with others in your state to speed up the process!</p></div>
+    <div class="qa reveal stagger-4"><h3>When does it open?</h3><p>We're heads down building it now. Get on the waitlist and you'll be among the first in the day it opens.</p></div>
+    <div class="qa reveal stagger-5"><h3>Do I have to start my hours over?</h3><p>No. Bring what you've already logged in by CSV or PDF and pick up right where you are.</p></div>
+    <div class="qa reveal stagger-6"><h3>Who's behind it?</h3><p>Stone Ramsey along with several other therapists just like you.</p></div>
   </div>
 </section>
 
@@ -523,7 +554,7 @@
 <footer>
   <div class="wrap foot">
     <div>
-      <div class="brand"><img src="images/cohort-wordmark-v2.png" alt="Cohort"></div>
+      <div class="brand"><img src="images/cohort-wordmark.png" alt="Cohort"></div>
       <div class="tag">Made in Georgia, by a therapist, for therapists.</div>
     </div>
     <div class="meta">
@@ -533,16 +564,77 @@
 </footer>
 
 <script>
-  // Scroll reveal (respects reduced motion via CSS fallback)
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Scroll reveal: re-triggers on every entry, scrolling down or back up.
   (function(){
     var els = document.querySelectorAll('.reveal');
-    if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+    if(!('IntersectionObserver' in window) || prefersReducedMotion){els.forEach(function(e){e.classList.add('in')});return;}
     var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
+      entries.forEach(function(en){
+        en.target.classList.toggle('in', en.isIntersecting);
+      });
     },{threshold:0.12});
     els.forEach(function(e){io.observe(e)});
   })();
 
+  // Subtle hero parallax: heading drifts slower than the page, GPU-only (transform).
+  (function(){
+    var h1 = document.querySelector('.hero h1');
+    if(!h1 || prefersReducedMotion) return;
+    var ticking = false;
+    function update(){
+      var y = window.scrollY || window.pageYOffset;
+      var offset = Math.min(y * 0.08, 24);
+      h1.style.transform = 'translateY(' + offset + 'px)';
+      ticking = false;
+    }
+    window.addEventListener('scroll', function(){
+      if(!ticking){ window.requestAnimationFrame(update); ticking = true; }
+    }, {passive:true});
+  })();
+
+  // Mobile hamburger menu: accessible open/close, Escape, focus management, tap-to-close.
+  (function(){
+    var toggle = document.getElementById('menuToggle');
+    var menu = document.getElementById('mobileMenu');
+    if(!toggle || !menu) return;
+    var links = menu.querySelectorAll('a');
+
+    function openMenu(){
+      menu.classList.add('open');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Close menu');
+      if(links.length){ links[0].focus(); }
+      document.addEventListener('keydown', onKeydown);
+      document.addEventListener('click', onOutsideClick, true);
+    }
+    function closeMenu(returnFocus){
+      menu.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open menu');
+      document.removeEventListener('keydown', onKeydown);
+      document.removeEventListener('click', onOutsideClick, true);
+      if(returnFocus){ toggle.focus(); }
+    }
+    function onKeydown(e){
+      if(e.key === 'Escape'){ closeMenu(true); }
+    }
+    function onOutsideClick(e){
+      if(!menu.contains(e.target) && e.target !== toggle){ closeMenu(false); }
+    }
+
+    toggle.addEventListener('click', function(){
+      if(menu.classList.contains('open')){ closeMenu(false); }
+      else { openMenu(); }
+    });
+    links.forEach(function(a){
+      a.addEventListener('click', function(){ closeMenu(false); });
+    });
+    window.addEventListener('resize', function(){
+      if(window.innerWidth >= 820 && menu.classList.contains('open')){ closeMenu(false); }
+    });
+  })();
 </script>
 <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
 </body>
