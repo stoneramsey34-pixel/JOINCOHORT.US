@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+
+<title>You're in &middot; Cohort</title>
+<meta name="description" content="You're on the Cohort waitlist. Check your inbox for one quick question, and share Cohort with someone still tracking hours the hard way.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,500&family=Hanken+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Favicons -->
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/cohort-favicon-terracotta.svg">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#DE7356">
+
+<style>
+  :root{
+    --cream:#FAF9F5;
+    --surface:#FFFDF9;
+    --surface-2:#F4F3EE;
+    --slate:#141413;
+    --ink-2:#3A3733;
+    --muted:#615D52;
+    --faint:#8C8779;
+    --border:#E9E4D8;
+    --border-2:#DED8C9;
+    --terracotta:#DE7356;
+    --terracotta-deep:#BC5536;
+    --terracotta-soft:#F6E4DC;
+    --radius:14px;
+    --radius-sm:8px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+  body{
+    background:var(--cream);
+    color:var(--slate);
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:16px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  h1,h2,h3{font-family:'Hanken Grotesk',sans-serif;letter-spacing:.005em;line-height:1.12;font-weight:600}
+
+  a{color:var(--terracotta-deep);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  .reading{max-width:680px;margin:0 auto}
+
+  /* ---------- header (matches index.html) ---------- */
+  header{position:sticky;top:0;z-index:50;background:rgba(250,249,245,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  .bar{display:flex;align-items:center;justify-content:space-between;height:64px;gap:24px}
+  .brand{display:inline-flex;align-items:center;padding:8px 0}
+  .brand:hover{text-decoration:none}
+  .brand img{height:28px;width:auto;display:block}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;border-radius:var(--radius-sm);
+    font-family:'Inter',system-ui,sans-serif;font-weight:600;font-size:15px;text-transform:uppercase;letter-spacing:.03em;cursor:pointer;transition:background .18s ease,transform .18s ease,border-color .18s ease,color .18s ease;
+    padding:12px 20px;min-height:44px;white-space:nowrap}
+  .btn-primary{background:var(--terracotta);color:#FFFDF9}
+  .btn-primary:hover{background:var(--terracotta-deep);text-decoration:none}
+  .btn-primary:active{transform:translateY(1px)}
+  :focus-visible{outline:2.5px solid var(--terracotta-deep);outline-offset:2px;border-radius:4px}
+
+  .header-cta{font-size:14px;padding:9px 16px;min-height:44px}
+  @media(max-width:820px){.header-cta{display:none}}
+
+  .navlinks{display:flex;align-items:center;gap:24px;flex:1;justify-content:center}
+  .navlinks a{font-family:'Hanken Grotesk',sans-serif;font-weight:600;color:var(--slate);font-size:15px;padding:10px 0}
+  .navlinks a:hover{color:var(--terracotta-deep)}
+  @media(max-width:820px){.navlinks{display:none}}
+
+  .hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;
+    width:44px;height:44px;flex-shrink:0;border:none;background:transparent;cursor:pointer;border-radius:var(--radius-sm)}
+  .hamburger:hover{background:var(--surface-2)}
+  .hamburger span{display:block;width:22px;height:2px;background:var(--slate);border-radius:2px;transition:transform .25s ease,opacity .25s ease}
+  .hamburger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .hamburger[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .hamburger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  @media(max-width:820px){.hamburger{display:flex}}
+
+  .mobile-menu{position:fixed;top:64px;left:0;right:0;z-index:49;background:var(--cream);
+    border-bottom:1px solid var(--border);box-shadow:0 16px 32px rgba(20,20,19,.10);
+    display:flex;flex-direction:column;padding:8px 24px 20px;
+    visibility:hidden;opacity:0;transform:translateY(-8px);
+    transition:opacity .22s ease,transform .22s ease,visibility 0s linear .22s}
+  .mobile-menu.open{visibility:visible;opacity:1;transform:translateY(0);transition:opacity .22s ease,transform .22s ease}
+  .mobile-menu a{font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:17px;color:var(--slate);
+    padding:0 4px;border-bottom:1px solid var(--border);min-height:52px;display:flex;align-items:center}
+  .mobile-menu a:hover{color:var(--terracotta-deep)}
+  .mobile-menu .mobile-cta{font-family:'Inter',system-ui,sans-serif;font-weight:600;font-size:15px;
+    justify-content:center;border-bottom:none;margin-top:14px;border-radius:var(--radius-sm);
+    background:var(--terracotta);color:#FFFDF9;min-height:48px}
+  .mobile-menu .mobile-cta:hover{background:var(--terracotta-deep);color:#FFFDF9}
+  @media(min-width:820px){.mobile-menu{display:none}}
+  @media(prefers-reduced-motion:reduce){
+    .mobile-menu,.mobile-menu.open,.hamburger span{transition:none}
+  }
+
+  /* ---------- welcome content ---------- */
+  .welcome{padding:88px 0 96px}
+  .welcome h1{font-size:clamp(40px,7vw,64px);margin-bottom:26px}
+  .welcome p{font-size:17.5px;color:var(--ink-2);line-height:1.7;margin-bottom:20px}
+  .welcome p strong{color:var(--slate);font-weight:700}
+  .welcome .ask{font-family:'Hanken Grotesk',sans-serif;font-size:22px;line-height:1.8}
+
+  .share-row{display:flex;flex-wrap:wrap;gap:12px;margin:36px 0 28px}
+  .btn-share{flex:1 1 200px;background:transparent;color:var(--terracotta);border:1px solid var(--terracotta);
+    transition:all .2s ease-out}
+  .btn-share:hover{background:var(--terracotta);color:#FAF9F5;border-color:var(--terracotta);
+    transform:translateY(-2px);box-shadow:0 4px 12px rgba(222,115,86,0.2);text-decoration:none}
+  .btn-share:active{transform:translateY(0);box-shadow:none}
+  .btn-share.is-copied{background:var(--terracotta);color:#FAF9F5;border-color:var(--terracotta)}
+  @media(max-width:640px){.share-row{flex-direction:column}.btn-share{flex:1 1 auto}}
+
+  .secondary-link{font-size:15px;color:var(--muted);margin-top:8px}
+  .secondary-link a{font-weight:600;white-space:nowrap}
+
+  /* ---------- footer (matches index.html) ---------- */
+  footer{padding:48px 0;border-top:1px solid var(--border)}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .foot .brand{display:inline-flex;align-items:center}
+  .foot .brand img{height:24px;width:auto;display:block}
+  .foot .meta{font-size:14px;color:var(--muted)}
+  .foot .meta a{color:var(--terracotta-deep)}
+  .foot .tag{font-size:14px;color:var(--faint)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a href="/" class="brand"><img src="/images/cohort-wordmark.png" alt="Cohort"></a>
+    <nav class="navlinks">
+      <a href="/#what-is-cohort">What Cohort Does</a>
+      <a href="/#letter">A Letter From Stone</a>
+      <a href="/#faq">FAQ</a>
+    </nav>
+    <a href="/#signup-bottom" class="btn btn-primary header-cta">JOIN THE MOVEMENT</a>
+    <button type="button" class="hamburger" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+    <a href="/#what-is-cohort">What Cohort Does</a>
+    <a href="/#letter">A Letter From Stone</a>
+    <a href="/#faq">FAQ</a>
+    <a href="/#signup-bottom" class="btn btn-primary mobile-cta">JOIN THE MOVEMENT</a>
+  </nav>
+</header>
+
+<section class="welcome">
+  <div class="wrap reading">
+    <h1>You're in.</h1>
+
+    <p class="ask"><strong>One favor.</strong> If you know someone from your grad program still counting hours in a spreadsheet, send them this. Cohort works best when the people around you are on it too.</p>
+
+    <p>Check your inbox in the next couple minutes. There's one question waiting for you, and answering it is how founding cohort members get picked. I read every reply personally.</p>
+
+    <div class="share-row">
+      <a class="btn btn-share" href="sms:?&body=I%20found%20this%20licensure%20tracker%20built%20for%20prelicensed%20therapists.%20Free%20forever.%20https%3A%2F%2Fjoincohort.us">Text a friend</a>
+      <a class="btn btn-share" href="mailto:?subject=Thought%20you%27d%20want%20to%20see%20this&body=A%20Georgia%20LAMFT%20is%20building%20a%20free%20licensure%20tracker%20for%20prelicensed%20clinicians.%20Waitlist%20is%20open.%20https%3A%2F%2Fjoincohort.us">Email a colleague</a>
+      <a class="btn btn-share" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjoincohort.us" target="_blank" rel="noopener">Share on LinkedIn</a>
+      <button type="button" class="btn btn-share" id="copyLinkBtn">Copy link</button>
+    </div>
+
+    <p class="secondary-link">
+      While you wait, the Facebook group is where the real conversations happen.
+      <a href="https://www.facebook.com/share/g/1BUcv6bES3/" target="_blank" rel="noopener noreferrer">Join the Georgia Prelicensed Clinicians group &rarr;</a>
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <div class="brand"><img src="/images/cohort-wordmark.png" alt="Cohort"></div>
+      <div class="tag">Made in Georgia, by a therapist, for therapists.</div>
+    </div>
+    <div class="meta">
+      <a href="mailto:hello@joincohort.us">hello@joincohort.us</a> &nbsp;&middot;&nbsp; joincohort.us &nbsp;&middot;&nbsp; &copy; 2026 Cohort
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Copy link button: swaps its own text to "Copied" for 2 seconds, then reverts.
+  (function(){
+    var btn = document.getElementById('copyLinkBtn');
+    if(!btn) return;
+    var label = btn.textContent;
+    var resetTimer;
+    btn.addEventListener('click', function(){
+      navigator.clipboard.writeText('https://joincohort.us').then(function(){
+        btn.textContent = 'Copied';
+        btn.classList.add('is-copied');
+        clearTimeout(resetTimer);
+        resetTimer = setTimeout(function(){
+          btn.textContent = label;
+          btn.classList.remove('is-copied');
+        }, 2000);
+      });
+    });
+  })();
+
+  // Mobile hamburger menu: accessible open/close, Escape, focus management, tap-to-close.
+  (function(){
+    var toggle = document.getElementById('menuToggle');
+    var menu = document.getElementById('mobileMenu');
+    if(!toggle || !menu) return;
+    var links = menu.querySelectorAll('a');
+
+    function openMenu(){
+      menu.classList.add('open');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Close menu');
+      if(links.length){ links[0].focus(); }
+      document.addEventListener('keydown', onKeydown);
+      document.addEventListener('click', onOutsideClick, true);
+    }
+    function closeMenu(returnFocus){
+      menu.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open menu');
+      document.removeEventListener('keydown', onKeydown);
+      document.removeEventListener('click', onOutsideClick, true);
+      if(returnFocus){ toggle.focus(); }
+    }
+    function onKeydown(e){
+      if(e.key === 'Escape'){ closeMenu(true); }
+    }
+    function onOutsideClick(e){
+      if(!menu.contains(e.target) && e.target !== toggle){ closeMenu(false); }
+    }
+
+    toggle.addEventListener('click', function(){
+      if(menu.classList.contains('open')){ closeMenu(false); }
+      else { openMenu(); }
+    });
+    links.forEach(function(a){
+      a.addEventListener('click', function(){ closeMenu(false); });
+    });
+    window.addEventListener('resize', function(){
+      if(window.innerWidth >= 820 && menu.classList.contains('open')){ closeMenu(false); }
+    });
+  })();
+</script>
+</body>
+</html>
