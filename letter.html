@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Letter From Our Founder · Cohort</title>
+<meta name="description" content="Stone Ramsey, LAMFT, on why he built Cohort: the loneliest stretch of becoming a therapist, and turning it into the tightest-knit community there is.">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Letter From Our Founder · Cohort">
+<meta property="og:description" content="Stone Ramsey, LAMFT, on why he built Cohort: the loneliest stretch of becoming a therapist, and turning it into the tightest-knit community there is.">
+<meta property="og:url" content="https://joincohort.us/letter.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="A Letter From Our Founder · Cohort">
+<meta name="twitter:description" content="Stone Ramsey, LAMFT, on why he built Cohort: the loneliest stretch of becoming a therapist, and turning it into the tightest-knit community there is.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:ital,wght@0,400;0,500;0,600;1,500&family=Hanken+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Favicons -->
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/cohort-favicon-terracotta.svg">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#DE7356">
+
+<style>
+  :root{
+    --cream:#FAF9F5;
+    --surface:#FFFDF9;
+    --surface-2:#F4F3EE;
+    --slate:#141413;
+    --ink-2:#3A3733;
+    --muted:#615D52;
+    --faint:#8C8779;
+    --border:#E9E4D8;
+    --border-2:#DED8C9;
+    --terracotta:#DE7356;
+    --terracotta-deep:#BC5536;
+    --terracotta-soft:#F6E4DC;
+    --radius:14px;
+    --radius-sm:8px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+  body{
+    background:var(--cream);
+    color:var(--slate);
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:16px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  h1,h2,h3{font-family:'Hanken Grotesk',sans-serif;letter-spacing:.005em;line-height:1.12;font-weight:600}
+
+  a{color:var(--terracotta-deep);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  .reading{max-width:680px;margin:0 auto}
+
+  .ico{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;width:20px;height:20px}
+
+  /* ---------- header (matches index.html) ---------- */
+  header{position:sticky;top:0;z-index:50;background:rgba(250,249,245,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  .bar{display:flex;align-items:center;justify-content:space-between;height:64px;gap:24px}
+  .brand{display:inline-flex;align-items:center;padding:8px 0}
+  .brand:hover{text-decoration:none}
+  .brand img{height:28px;width:auto;display:block}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;border-radius:var(--radius-sm);
+    font-family:'Inter',system-ui,sans-serif;font-weight:600;font-size:15px;text-transform:uppercase;letter-spacing:.03em;cursor:pointer;transition:background .18s ease,transform .18s ease,border-color .18s ease,color .18s ease;
+    padding:12px 20px;min-height:44px;white-space:nowrap}
+  .btn-primary{background:var(--terracotta);color:#FFFDF9}
+  .btn-primary:hover{background:var(--terracotta-deep);text-decoration:none}
+  .btn-primary:active{transform:translateY(1px)}
+  .btn-ghost{background:transparent;color:var(--slate);border:1px solid var(--border-2);padding:10px 16px;text-transform:none;letter-spacing:normal}
+  .btn-ghost:hover{background:var(--surface-2);border-color:var(--terracotta);color:var(--terracotta-deep);text-decoration:none}
+  :focus-visible{outline:2.5px solid var(--terracotta-deep);outline-offset:2px;border-radius:4px}
+
+  .header-cta{font-size:14px;padding:9px 16px;min-height:44px}
+  @media(max-width:820px){.header-cta{display:none}}
+
+  .navlinks{display:flex;align-items:center;gap:24px;flex:1;justify-content:center}
+  .navlinks a{font-family:'Hanken Grotesk',sans-serif;font-weight:600;color:var(--slate);font-size:15px;padding:10px 0}
+  .navlinks a:hover{color:var(--terracotta-deep)}
+  @media(max-width:820px){.navlinks{display:none}}
+
+  .hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;
+    width:44px;height:44px;flex-shrink:0;border:none;background:transparent;cursor:pointer;border-radius:var(--radius-sm)}
+  .hamburger:hover{background:var(--surface-2)}
+  .hamburger span{display:block;width:22px;height:2px;background:var(--slate);border-radius:2px;transition:transform .25s ease,opacity .25s ease}
+  .hamburger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .hamburger[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .hamburger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  @media(max-width:820px){.hamburger{display:flex}}
+
+  .mobile-menu{position:fixed;top:64px;left:0;right:0;z-index:49;background:var(--cream);
+    border-bottom:1px solid var(--border);box-shadow:0 16px 32px rgba(20,20,19,.10);
+    display:flex;flex-direction:column;padding:8px 24px 20px;
+    visibility:hidden;opacity:0;transform:translateY(-8px);
+    transition:opacity .22s ease,transform .22s ease,visibility 0s linear .22s}
+  .mobile-menu.open{visibility:visible;opacity:1;transform:translateY(0);transition:opacity .22s ease,transform .22s ease}
+  .mobile-menu a{font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:17px;color:var(--slate);
+    padding:0 4px;border-bottom:1px solid var(--border);min-height:52px;display:flex;align-items:center}
+  .mobile-menu a:hover{color:var(--terracotta-deep)}
+  .mobile-menu .mobile-cta{font-family:'Inter',system-ui,sans-serif;font-weight:600;font-size:15px;
+    justify-content:center;border-bottom:none;margin-top:14px;border-radius:var(--radius-sm);
+    background:var(--terracotta);color:#FFFDF9;min-height:48px}
+  .mobile-menu .mobile-cta:hover{background:var(--terracotta-deep);color:#FFFDF9}
+  @media(min-width:820px){.mobile-menu{display:none}}
+  @media(prefers-reduced-motion:reduce){
+    .mobile-menu,.mobile-menu.open,.hamburger span{transition:none}
+  }
+
+  /* ---------- letter page ---------- */
+  .letter-page{padding:64px 0 40px}
+  .letter-side{display:flex;flex-direction:column;align-items:center;text-align:center;margin:0 auto 40px}
+  .letter-photo{width:200px;height:200px;border-radius:50%;object-fit:cover;display:block}
+  .letter-name{font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:18px;color:var(--slate);margin-top:16px}
+  .letter-creds{font-size:13.5px;color:var(--muted);margin-top:4px;line-height:1.5}
+  @media(max-width:640px){.letter-photo{width:160px;height:160px}}
+
+  .letter-page h1{font-size:clamp(30px,4.5vw,46px);text-align:center;margin:0 auto 36px;max-width:22ch;line-height:1.18}
+  .letter-page .body p{font-size:17px;color:var(--ink-2);margin-bottom:18px;line-height:1.72}
+  .letter-page .body em{font-style:italic;color:var(--terracotta-deep);font-weight:500}
+  .letter-page .pull{font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:clamp(21px,3vw,27px);line-height:1.35;color:var(--slate);
+    border-left:3px solid var(--terracotta);padding:6px 0 6px 22px;margin:30px 0}
+  .signoff{margin-top:30px;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:19px;color:var(--slate)}
+  .signoff small{display:block;font-family:'Inter',system-ui,sans-serif;font-size:14px;color:var(--muted);font-weight:400;margin-top:4px}
+
+  .back-link{text-align:center;margin-top:48px}
+  .back-link .ico{width:16px;height:16px;stroke-width:2.4}
+
+  /* ---------- footer (matches index.html) ---------- */
+  footer{padding:48px 0;border-top:1px solid var(--border)}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .foot .brand{display:inline-flex;align-items:center}
+  .foot .brand img{height:24px;width:auto;display:block}
+  .foot .meta{font-size:14px;color:var(--muted)}
+  .foot .meta a{color:var(--terracotta-deep)}
+  .foot .tag{font-size:14px;color:var(--faint)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a href="index.html" class="brand"><img src="images/cohort-wordmark.png" alt="Cohort"></a>
+    <nav class="navlinks">
+      <a href="index.html#what-is-cohort">What Cohort Does</a>
+      <a href="letter.html">A Letter From Stone</a>
+      <a href="index.html#faq">FAQ</a>
+    </nav>
+    <a href="index.html#signup-bottom" class="btn btn-primary header-cta">JOIN THE MOVEMENT</a>
+    <button type="button" class="hamburger" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+    <a href="index.html#what-is-cohort">What Cohort Does</a>
+    <a href="letter.html">A Letter From Stone</a>
+    <a href="index.html#faq">FAQ</a>
+    <a href="index.html#signup-bottom" class="btn btn-primary mobile-cta">JOIN THE MOVEMENT</a>
+  </nav>
+</header>
+
+<section class="letter-page">
+  <div class="wrap reading">
+    <div class="letter-side">
+      <img class="letter-photo" src="images/cropped-headshot.jpg" alt="Stone Ramsey">
+      <div class="letter-name">Stone Ramsey</div>
+      <div class="letter-creds">LAMFT &middot; Doctoral Candidate, MFT &middot; Founder of Cohort</div>
+    </div>
+
+    <h1>I built something I couldn't believe wasn't there to begin with.</h1>
+
+    <div class="body">
+      <p>I was a fresh graduate from a Marriage and Family Therapy program in Tennessee when I moved back down to Georgia. Wide-eyed, ready to start my career and make a difference in this world. <em>And finally get paid for it.</em> But there was one thing: I had zero connections in the therapy world.</p>
+
+      <p>I went from a cohort of twelve who were with me every step to graduation, learning how to be therapists together, supporting each other, conceptualizing cases together. Then on graduation day, it all stopped. We all had to go our separate ways.</p>
+
+      <p>Me? I had to move out of state into new laws, new regulations, new systems, with no one there to guide me through the most ambiguous and confusing part of our profession: prelicensure. I was alone, confused, and stressed, all while trying to build a caseload.</p>
+
+      <p class="pull">I didn't know what step came before what. I struggled to find a supervisor. I was praying my forms were going to the board the right way. The waiting, the uncertainty, the fear of having to start over.</p>
+
+      <p>I don't even want to get into the financial side of it. It was a grueling season.</p>
+
+      <p>Somewhere in there, I learned that a therapist's main mode of community is Facebook groups. And there was no group for prelicensed therapists in Georgia. So I made one. The response, just from making it, was immediate and warm.</p>
+
+      <p>Then it hit me. Everyone in this stage was feeling exactly what I was feeling. The same struggle to find a good practice, the right supervisor, to get board submissions correct, to track hours, to not feel so alone.</p>
+
+      <p>Therapists serve people better when they're supported, connected, encouraged, and equipped with the right tools. There is a clear need for a therapist home. An official community where everyone gets it and everyone's verified. A place where you can conceptualize cases, refer to each other, and lift one another up. A platform built by therapists, made for therapists.</p>
+
+      <p>Let's stop trying to figure this out by ourselves and start linking arms. Join me in turning what can be the loneliest profession into the tightest-knit community there is.</p>
+
+      <p class="signoff">Stone<small>Founder, Cohort</small></p>
+    </div>
+
+    <p class="back-link">
+      <a href="index.html"><svg class="ico" viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Back to home</a>
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <div class="brand"><img src="images/cohort-wordmark.png" alt="Cohort"></div>
+      <div class="tag">Made in Georgia, by a therapist, for therapists.</div>
+    </div>
+    <div class="meta">
+      <a href="mailto:hello@joincohort.us">hello@joincohort.us</a> &nbsp;&middot;&nbsp; joincohort.us &nbsp;&middot;&nbsp; &copy; 2026 Cohort
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile hamburger menu: accessible open/close, Escape, focus management, tap-to-close.
+  (function(){
+    var toggle = document.getElementById('menuToggle');
+    var menu = document.getElementById('mobileMenu');
+    if(!toggle || !menu) return;
+    var links = menu.querySelectorAll('a');
+
+    function openMenu(){
+      menu.classList.add('open');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Close menu');
+      if(links.length){ links[0].focus(); }
+      document.addEventListener('keydown', onKeydown);
+      document.addEventListener('click', onOutsideClick, true);
+    }
+    function closeMenu(returnFocus){
+      menu.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open menu');
+      document.removeEventListener('keydown', onKeydown);
+      document.removeEventListener('click', onOutsideClick, true);
+      if(returnFocus){ toggle.focus(); }
+    }
+    function onKeydown(e){
+      if(e.key === 'Escape'){ closeMenu(true); }
+    }
+    function onOutsideClick(e){
+      if(!menu.contains(e.target) && e.target !== toggle){ closeMenu(false); }
+    }
+
+    toggle.addEventListener('click', function(){
+      if(menu.classList.contains('open')){ closeMenu(false); }
+      else { openMenu(); }
+    });
+    links.forEach(function(a){
+      a.addEventListener('click', function(){ closeMenu(false); });
+    });
+    window.addEventListener('resize', function(){
+      if(window.innerWidth >= 820 && menu.classList.contains('open')){ closeMenu(false); }
+    });
+  })();
+</script>
+</body>
+</html>

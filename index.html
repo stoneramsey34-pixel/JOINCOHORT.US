@@ -200,6 +200,27 @@
 
   .divider{height:1px;background:var(--border);max-width:1080px;margin:0 auto}
 
+  /* problem */
+  .problem-stats{display:flex;gap:56px;margin-top:8px}
+  .stat-block{flex:1}
+  .stat-block .num{font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:clamp(48px,7vw,64px);color:var(--terracotta-deep);line-height:1;margin-bottom:12px}
+  .stat-block .cap{font-size:16px;color:var(--ink-2);max-width:36ch;line-height:1.55}
+  @media(max-width:640px){.problem-stats{flex-direction:column;gap:32px}}
+
+  .problem-sources{font-size:12px;color:var(--faint);margin-top:26px;line-height:1.6;max-width:70ch}
+  .problem-sources a{color:var(--terracotta-deep);font-weight:500}
+
+  .problem-transition{font-size:17.5px;color:var(--ink-2);margin:52px 0 28px}
+
+  .problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .problem-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;display:flex;gap:14px;align-items:flex-start}
+  .problem-item .ico{color:var(--terracotta-deep);width:22px;height:22px;flex-shrink:0;margin-top:2px}
+  .problem-item h3{font-size:17px;margin-bottom:6px}
+  .problem-item p{color:var(--muted);font-size:15px;line-height:1.55}
+  @media(max-width:700px){.problem-grid{grid-template-columns:1fr}}
+
+  .problem-bridge{font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:20px;text-align:center;color:var(--slate);margin-top:44px}
+
   /* pillars */
   .pillar{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:18px}
   .pillar+.pillar{margin-top:30px}
@@ -248,7 +269,7 @@
 
   /* letter */
   .letter{background:var(--surface-2)}
-  .letter-inner{max-width:900px;display:grid;grid-template-columns:220px 1fr;gap:36px;align-items:start}
+  .letter-inner{max-width:900px;display:grid;grid-template-columns:220px 1fr;gap:36px;align-items:center}
   .letter-side{display:flex;flex-direction:column;align-items:center;text-align:center}
   .letter-photo{width:200px;height:200px;border-radius:50%;object-fit:cover;display:block}
   .letter-name{font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:18px;color:var(--slate);margin-top:16px}
@@ -257,13 +278,15 @@
     .letter-inner{grid-template-columns:1fr}
     .letter-photo{width:160px;height:160px}
   }
-  .letter h2{font-size:clamp(26px,4vw,38px);margin-bottom:26px;max-width:20ch}
-  .letter .body p{font-size:17px;color:var(--ink-2);margin-bottom:18px;line-height:1.72}
-  .letter .body em{font-style:italic;color:var(--terracotta-deep);font-weight:500}
-  .letter .pull{font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:clamp(21px,3vw,27px);line-height:1.35;color:var(--slate);
-    border-left:3px solid var(--terracotta);padding:6px 0 6px 22px;margin:30px 0}
-  .signoff{margin-top:30px;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:19px;color:var(--slate)}
-  .signoff small{display:block;font-family:'Inter',system-ui,sans-serif;font-size:14px;color:var(--muted);font-weight:400;margin-top:4px}
+
+  .letter-teaser{display:flex;flex-direction:column;justify-content:center}
+  .letter-teaser h2{font-size:clamp(24px,3vw,32px);margin-bottom:16px}
+  .letter-cta{display:inline-flex;align-items:center;gap:8px;font-family:'Inter',system-ui,sans-serif;
+    font-weight:600;font-size:16px;color:var(--terracotta-deep);width:fit-content}
+  .letter-cta:hover{text-decoration:none}
+  .letter-cta .ico{width:18px;height:18px;stroke-width:2.4;transition:transform .18s ease}
+  .letter-cta:hover .ico{transform:translateX(4px)}
+  @media(max-width:760px){.letter-teaser{align-items:center;text-align:center}}
 
   /* movement */
   .movement .cohort-dots{display:flex;align-items:center;margin:0 0 28px}
@@ -319,7 +342,7 @@
     <a href="#top" class="brand"><img src="images/cohort-wordmark.png" alt="Cohort"></a>
     <nav class="navlinks">
       <a href="#what-is-cohort">What Cohort Does</a>
-      <a href="#letter">A Letter From Stone</a>
+      <a href="letter.html">A Letter From Stone</a>
       <a href="#faq">FAQ</a>
     </nav>
     <a href="#signup-bottom" class="btn btn-primary header-cta">JOIN THE MOVEMENT</a>
@@ -329,7 +352,7 @@
   </div>
   <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
     <a href="#what-is-cohort">What Cohort Does</a>
-    <a href="#letter">A Letter From Stone</a>
+    <a href="letter.html">A Letter From Stone</a>
     <a href="#faq">FAQ</a>
     <a href="#signup-bottom" class="btn btn-primary mobile-cta">JOIN THE MOVEMENT</a>
   </nav>
@@ -372,6 +395,66 @@
 </section>
 
 <div class="divider"></div>
+
+<!-- ===================== THE PROBLEM ===================== -->
+<section id="the-problem">
+  <div class="wrap">
+    <div class="reveal" style="margin-bottom:32px">
+      <p class="sec-eyebrow">The problem</p>
+      <h2 class="sec-title" style="max-width:26ch">Becoming a therapist is brutal. Staying one is harder.</h2>
+    </div>
+
+    <div class="reveal">
+      <div class="problem-stats">
+        <div class="stat-block">
+          <div class="num">57%</div>
+          <p class="cap">of master's-level therapy grads never reach full licensure.</p>
+        </div>
+        <div class="stat-block">
+          <div class="num">93%</div>
+          <p class="cap">of behavioral health clinicians report burnout. 62% call it severe.</p>
+        </div>
+      </div>
+
+      <p class="problem-sources">Sources: <a href="https://www.chcf.org/resource/counties-embrace-new-approach-getting-therapist-trainees-licensed/" target="_blank" rel="noopener">California Health Care Foundation</a> (2026); National Council for Mental Wellbeing (2023), via <a href="https://bhw.hrsa.gov/sites/default/files/bureau-health-workforce/data-research/Behavioral-Health-Workforce-Brief-2025.pdf" target="_blank" rel="noopener">HRSA State of the Behavioral Health Workforce, 2025</a>.</p>
+    </div>
+
+    <p class="problem-transition reveal">And no one hands you a map. You're left to figure out:</p>
+
+    <div class="problem-grid">
+      <div class="problem-item reveal stagger-1">
+        <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M16.24 7.76l-2.12 6.36-6.36 2.12 2.12-6.36z"/></svg>
+        <div>
+          <h3>Navigating the licensure steps</h3>
+          <p>A maze of board requirements, forms, and phases with no clear order and no one to ask.</p>
+        </div>
+      </div>
+      <div class="problem-item reveal stagger-2">
+        <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+        <div>
+          <h3>Tracking your hours</h3>
+          <p>Direct and supervision hours scattered across spreadsheets, praying the totals are right for the board.</p>
+        </div>
+      </div>
+      <div class="problem-item reveal stagger-3">
+        <svg class="ico" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        <div>
+          <h3>Verifying your supervisor</h3>
+          <p>Soon you'll be able to confirm a supervisor is properly credentialed before you trust them with your career.</p>
+        </div>
+      </div>
+      <div class="problem-item reveal stagger-4">
+        <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+        <div>
+          <h3>Doing it alone</h3>
+          <p>The cohort that got you through grad school scatters, right when the hardest part begins.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="problem-bridge reveal">Cohort fixes all four.</p>
+  </div>
+</section>
 
 <!-- ===================== WHAT IT DOES ===================== -->
 <section id="what-is-cohort">
@@ -463,33 +546,11 @@
     <div class="letter-side">
       <img class="letter-photo" src="images/cropped-headshot.jpg" alt="Stone Ramsey">
       <div class="letter-name">Stone Ramsey</div>
-      <div class="letter-creds">LAMFT · Doctoral Candidate, MFT · Creator of Cohort</div>
+      <div class="letter-creds">LAMFT · Doctoral Candidate, MFT · Founder of Cohort</div>
     </div>
-    <div class="letter-main">
-      <p class="sec-eyebrow">A letter from Stone</p>
-      <h2>I built something I couldn't believe wasn't there to begin with.</h2>
-
-      <div class="body">
-        <p>I was a fresh graduate from a Marriage and Family Therapy program in Tennessee when I moved back down to Georgia. Wide-eyed, ready to start my career and make a difference in this world. <em>And finally get paid for it.</em> But there was one thing: I had zero connections in the therapy world.</p>
-
-        <p>I went from a cohort of twelve who were with me every step to graduation, learning how to be therapists together, supporting each other, conceptualizing cases together. Then on graduation day, it all stopped. We all had to go our separate ways.</p>
-
-        <p>Me? I had to move out of state into new laws, new regulations, new systems, with no one there to guide me through the most ambiguous and confusing part of our profession: prelicensure. I was alone, confused, and stressed, all while trying to build a caseload.</p>
-
-        <p class="pull">I didn't know what step came before what. I struggled to find a supervisor. I was praying my forms were going to the board the right way. The waiting, the uncertainty, the fear of having to start over.</p>
-
-        <p>I don't even want to get into the financial side of it. It was a grueling season.</p>
-
-        <p>Somewhere in there, I learned that a therapist's main mode of community is Facebook groups. And there was no group for prelicensed therapists in Georgia. So I made one. The response, just from making it, was immediate and warm.</p>
-
-        <p>Then it hit me. Everyone in this stage was feeling exactly what I was feeling. The same struggle to find a good practice, the right supervisor, to get board submissions correct, to track hours, to not feel so alone.</p>
-
-        <p>Therapists serve people better when they're supported, connected, encouraged, and equipped with the right tools. There is a clear need for a therapist home. An official community where everyone gets it and everyone's verified. A place where you can conceptualize cases, refer to each other, and lift one another up. A platform built by therapists, made for therapists.</p>
-
-        <p>Let's stop trying to figure this out by ourselves and start linking arms. Join me in turning what can be the loneliest profession into the tightest-knit community there is.</p>
-
-        <p class="signoff">Stone<small>Founder, Cohort</small></p>
-      </div>
+    <div class="letter-teaser">
+      <h2>A Letter From Our Founder</h2>
+      <a href="letter.html" class="letter-cta">Read Here <svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
   </div>
 </section>
