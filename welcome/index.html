@@ -3,14 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S6FS6LQC3J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-S6FS6LQC3J');
+</script>
+
 <meta name="robots" content="noindex, nofollow">
 
-<title>You're in &middot; Cohort</title>
-<meta name="description" content="You're on the Cohort waitlist. Check your inbox for one quick question, and share Cohort with someone still tracking hours the hard way.">
+<title>Bring Someone With You &middot; Cohort</title>
+<meta name="description" content="Cohort works better the more of us are in it. Share the waitlist with someone still grinding through prelicensure.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bring Someone With You &middot; Cohort">
+<meta property="og:description" content="Cohort works better the more of us are in it. Share the waitlist with someone still grinding through prelicensure.">
+<meta property="og:url" content="https://joincohort.us/welcome/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bring Someone With You &middot; Cohort">
+<meta name="twitter:description" content="Cohort works better the more of us are in it. Share the waitlist with someone still grinding through prelicensure.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,500&family=Hanken+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:ital,wght@0,400;0,500;0,600;1,500&family=Hanken+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- Favicons -->
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -61,6 +79,10 @@
   .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
   .reading{max-width:680px;margin:0 auto}
 
+  .ico{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;width:20px;height:20px}
+
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
   /* ---------- header (matches index.html) ---------- */
   header{position:sticky;top:0;z-index:50;background:rgba(250,249,245,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
   .bar{display:flex;align-items:center;justify-content:space-between;height:64px;gap:24px}
@@ -74,6 +96,7 @@
   .btn-primary{background:var(--terracotta);color:#FFFDF9}
   .btn-primary:hover{background:var(--terracotta-deep);text-decoration:none}
   .btn-primary:active{transform:translateY(1px)}
+  .btn-primary.is-copied{background:var(--sage,#5A8F6E)}
   :focus-visible{outline:2.5px solid var(--terracotta-deep);outline-offset:2px;border-radius:4px}
 
   .header-cta{font-size:14px;padding:9px 16px;min-height:44px}
@@ -111,24 +134,35 @@
     .mobile-menu,.mobile-menu.open,.hamburger span{transition:none}
   }
 
-  /* ---------- welcome content ---------- */
+  /* ---------- share page ---------- */
   .welcome{padding:88px 0 96px}
-  .welcome h1{font-size:clamp(40px,7vw,64px);margin-bottom:26px}
-  .welcome p{font-size:17.5px;color:var(--ink-2);line-height:1.7;margin-bottom:20px}
-  .welcome p strong{color:var(--slate);font-weight:700}
-  .welcome .ask{font-family:'Hanken Grotesk',sans-serif;font-size:22px;line-height:1.8}
+  .welcome h1{font-size:clamp(36px,6vw,58px);margin-bottom:22px;max-width:16ch}
+  .welcome p{font-size:17.5px;color:var(--ink-2);line-height:1.7}
 
-  .share-row{display:flex;flex-wrap:wrap;gap:12px;margin:36px 0 28px}
-  .btn-share{flex:1 1 200px;background:transparent;color:var(--terracotta);border:1px solid var(--terracotta);
-    transition:all .2s ease-out}
-  .btn-share:hover{background:var(--terracotta);color:#FAF9F5;border-color:var(--terracotta);
-    transform:translateY(-2px);box-shadow:0 4px 12px rgba(222,115,86,0.2);text-decoration:none}
-  .btn-share:active{transform:translateY(0);box-shadow:none}
-  .btn-share.is-copied{background:var(--terracotta);color:#FAF9F5;border-color:var(--terracotta)}
-  @media(max-width:640px){.share-row{flex-direction:column}.btn-share{flex:1 1 auto}}
+  .share-card{background:#1A1917;border-radius:16px;
+    box-shadow:0 12px 32px rgba(20,20,19,0.18),0 2px 8px rgba(20,20,19,0.14);
+    padding:36px;margin:40px 0 28px}
 
-  .secondary-link{font-size:15px;color:var(--muted);margin-top:8px}
-  .secondary-link a{font-weight:600;white-space:nowrap}
+  .copy-block{display:flex;gap:10px;margin-bottom:24px}
+  .copy-block input{flex:1;min-width:0;font-family:'Inter',system-ui,sans-serif;font-size:15px;color:#FAF9F5;
+    background:#242220;border:1px solid #3A3835;border-radius:var(--radius-sm);
+    padding:13px 14px;min-height:48px}
+  .copy-block .btn{flex-shrink:0}
+  @media(max-width:520px){.copy-block{flex-direction:column}}
+
+  .share-buttons{display:flex;gap:12px;flex-wrap:wrap}
+  .share-btn{flex:1 1 150px;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    font-family:'Inter',system-ui,sans-serif;font-weight:600;font-size:14.5px;letter-spacing:.01em;
+    color:var(--terracotta);background:transparent;border:1px solid var(--terracotta);border-radius:var(--radius-sm);
+    padding:12px 16px;min-height:48px;cursor:pointer;transition:all .2s ease-out;text-decoration:none}
+  .share-btn:hover{background:var(--terracotta);color:#FAF9F5;text-decoration:none;
+    transform:translateY(-2px);box-shadow:0 4px 12px rgba(222,115,86,0.3)}
+  .share-btn:active{transform:translateY(0);box-shadow:none}
+  .share-btn.is-copied{background:var(--terracotta);color:#FAF9F5}
+  .share-btn .ico{width:18px;height:18px;stroke-width:2.2}
+  @media(max-width:520px){.share-buttons{flex-direction:column}.share-btn{flex:1 1 auto}}
+
+  .closing{margin-top:8px}
 
   /* ---------- footer (matches index.html) ---------- */
   footer{padding:48px 0;border-top:1px solid var(--border)}
@@ -147,8 +181,9 @@
     <a href="/" class="brand"><img src="/images/cohort-wordmark.png" alt="Cohort"></a>
     <nav class="navlinks">
       <a href="/#what-is-cohort">What Cohort Does</a>
-      <a href="/#letter">A Letter From Stone</a>
+      <a href="/letter.html">A Letter From Stone</a>
       <a href="/#faq">FAQ</a>
+      <a href="/welcome/">Share Cohort.</a>
     </nav>
     <a href="/#signup-bottom" class="btn btn-primary header-cta">JOIN THE MOVEMENT</a>
     <button type="button" class="hamburger" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
@@ -157,31 +192,44 @@
   </div>
   <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
     <a href="/#what-is-cohort">What Cohort Does</a>
-    <a href="/#letter">A Letter From Stone</a>
+    <a href="/letter.html">A Letter From Stone</a>
     <a href="/#faq">FAQ</a>
+    <a href="/welcome/">Share Cohort.</a>
     <a href="/#signup-bottom" class="btn btn-primary mobile-cta">JOIN THE MOVEMENT</a>
   </nav>
 </header>
 
 <section class="welcome">
   <div class="wrap reading">
-    <h1>You're in.</h1>
+    <h1>You're in. Now bring someone with you.</h1>
 
-    <p class="ask"><strong>One favor.</strong> If you know someone from your grad program still counting hours in a spreadsheet, send them this. Cohort works best when the people around you are on it too.</p>
+    <p>Cohort works better the more of us are in it. If you know another therapist grinding through prelicensure, send them the link to the waitlist. Bridge the gap, let's do this together.</p>
 
-    <p>Check your inbox in the next couple minutes. There's one question waiting for you, and answering it is how founding cohort members get picked. I read every reply personally.</p>
+    <div class="share-card">
+      <div class="copy-block">
+        <label for="share-url" class="sr-only">Cohort link</label>
+        <input id="share-url" type="text" value="https://joincohort.us" readonly>
+        <button type="button" class="btn btn-primary" id="copyLinkBtn">Copy link</button>
+      </div>
 
-    <div class="share-row">
-      <a class="btn btn-share" href="sms:?&body=I%20found%20this%20licensure%20tracker%20built%20for%20prelicensed%20therapists.%20Free%20forever.%20https%3A%2F%2Fjoincohort.us">Text a friend</a>
-      <a class="btn btn-share" href="mailto:?subject=Thought%20you%27d%20want%20to%20see%20this&body=A%20Georgia%20LAMFT%20is%20building%20a%20free%20licensure%20tracker%20for%20prelicensed%20clinicians.%20Waitlist%20is%20open.%20https%3A%2F%2Fjoincohort.us">Email a colleague</a>
-      <a class="btn btn-share" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjoincohort.us" target="_blank" rel="noopener">Share on LinkedIn</a>
-      <button type="button" class="btn btn-share" id="copyLinkBtn">Copy link</button>
+      <div class="share-buttons">
+        <a class="share-btn" href="mailto:?subject=A%20tool%20for%20prelicensed%20therapists&body=I%20just%20joined%20the%20waitlist%20for%20Cohort%2C%20a%20free%20hour%20tracker%20and%20community%20built%20for%20prelicensed%20therapists%20and%20supervisors.%20Thought%20of%20you.%20https%3A%2F%2Fjoincohort.us">
+          <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          Email
+        </a>
+        <a class="share-btn" href="sms:?&body=I%20just%20joined%20the%20waitlist%20for%20Cohort%2C%20a%20free%20hour%20tracker%20and%20community%20built%20for%20prelicensed%20therapists%20and%20supervisors.%20Thought%20of%20you.%20https%3A%2F%2Fjoincohort.us">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Text
+        </a>
+        <button type="button" class="share-btn" id="copyPostBtn">
+          <svg class="ico" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M4 16V4a2 2 0 0 1 2-2h10"/></svg>
+          Copy for social
+        </button>
+      </div>
+
     </div>
 
-    <p class="secondary-link">
-      Get community now while you wait!
-      <a href="https://www.facebook.com/share/g/1BUcv6bES3/" target="_blank" rel="noopener noreferrer">Join our Georgia Prelicensed Facebook group &rarr;</a>
-    </p>
+    <p class="closing">That's the whole ask. Thanks for helping us build this. <a href="/">Back to homepage</a></p>
   </div>
 </section>
 
@@ -198,19 +246,64 @@
 </footer>
 
 <script>
-  // Copy link button: swaps its own text to "Copied" for 2 seconds, then reverts.
-  (function(){
-    var btn = document.getElementById('copyLinkBtn');
+  // Clipboard copy with a fallback for browsers without the async Clipboard API.
+  function copyText(text){
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function(resolve, reject){
+      try{
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.top = '-1000px';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        var ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        if(ok){ resolve(); } else { reject(new Error('execCommand copy failed')); }
+      }catch(e){ reject(e); }
+    });
+  }
+
+  function wireCopyButton(id, text, copiedLabel){
+    var btn = document.getElementById(id);
     if(!btn) return;
-    var label = btn.textContent;
+    var label = btn.textContent.trim();
     var resetTimer;
     btn.addEventListener('click', function(){
-      navigator.clipboard.writeText('https://joincohort.us').then(function(){
-        btn.textContent = 'Copied';
+      copyText(text).then(function(){
+        btn.textContent = copiedLabel || 'Copied';
         btn.classList.add('is-copied');
         clearTimeout(resetTimer);
         resetTimer = setTimeout(function(){
           btn.textContent = label;
+          btn.classList.remove('is-copied');
+        }, 2000);
+      }).catch(function(){
+        var input = document.getElementById('share-url');
+        if(input){ input.focus(); input.select(); }
+      });
+    });
+  }
+
+  wireCopyButton('copyLinkBtn', 'https://joincohort.us', 'Copied');
+
+  (function(){
+    var btn = document.getElementById('copyPostBtn');
+    if(!btn) return;
+    var postText = "If you're prelicensed and drowning in hour tracking and licensure steps, check out Cohort. Free for prelicensed therapists. joincohort.us";
+    var originalHTML = btn.innerHTML;
+    var resetTimer;
+    btn.addEventListener('click', function(){
+      copyText(postText).then(function(){
+        btn.textContent = 'Copied';
+        btn.classList.add('is-copied');
+        clearTimeout(resetTimer);
+        resetTimer = setTimeout(function(){
+          btn.innerHTML = originalHTML;
           btn.classList.remove('is-copied');
         }, 2000);
       });

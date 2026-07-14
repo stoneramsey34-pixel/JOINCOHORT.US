@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S6FS6LQC3J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-S6FS6LQC3J');
+</script>
+
 <!--
   ============================================================
   COHORT  ·  waitlist landing page  ·  joincohort.us
@@ -311,6 +320,11 @@
   .final .signup{margin:0 auto}
 
   /* footer */
+  .share-cta{padding:80px 0}
+  .share-cta h2{text-align:center;font-size:clamp(28px,4vw,40px);margin:0 auto 16px}
+  .share-cta p{text-align:center;color:var(--muted);font-size:17px;margin:0 auto 28px;max-width:46ch}
+  .share-cta .btn{display:flex;margin:0 auto;width:fit-content}
+
   footer{padding:48px 0;border-top:1px solid var(--border)}
   .foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
   .foot .brand{display:inline-flex;align-items:center}
@@ -344,6 +358,7 @@
       <a href="#what-is-cohort">What Cohort Does</a>
       <a href="letter.html">A Letter From Stone</a>
       <a href="#faq">FAQ</a>
+      <a href="welcome/">Share Cohort.</a>
     </nav>
     <a href="#signup-bottom" class="btn btn-primary header-cta">JOIN THE MOVEMENT</a>
     <button type="button" class="hamburger" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
@@ -354,6 +369,7 @@
     <a href="#what-is-cohort">What Cohort Does</a>
     <a href="letter.html">A Letter From Stone</a>
     <a href="#faq">FAQ</a>
+    <a href="welcome/">Share Cohort.</a>
     <a href="#signup-bottom" class="btn btn-primary mobile-cta">JOIN THE MOVEMENT</a>
   </nav>
 </header>
@@ -610,6 +626,15 @@
         </form>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ===================== SHARE ===================== -->
+<section class="share-cta">
+  <div class="wrap reading">
+    <h2>Already on the list?</h2>
+    <p>Cohort works better the more of us are in it. Send it to someone else grinding through prelicensure.</p>
+    <a href="welcome/" class="btn btn-primary">SHARE COHORT</a>
   </div>
 </section>
 
